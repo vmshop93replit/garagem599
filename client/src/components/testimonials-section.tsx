@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import secarVideo from "@assets/secar_1757071025695.mp4";
 
 export default function TestimonialsSection() {
   const testimonials = [
@@ -21,8 +22,20 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <section className="py-10 bg-secondary/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-10 overflow-hidden">
+      {/* Video Background */}
+      <video 
+        autoPlay 
+        muted 
+        loop 
+        playsInline 
+        className="absolute inset-0 w-full h-full object-cover opacity-10"
+      >
+        <source src={secarVideo} type="video/mp4" />
+      </video>
+      
+      <div className="absolute inset-0 bg-secondary/30"></div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-8"
           initial={{ opacity: 0, y: 30 }}

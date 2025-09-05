@@ -2,10 +2,7 @@ import { motion } from "framer-motion";
 import { Calendar, MessageCircle } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import logoImage from "@assets/336f2e02-fa2f-41f1-930c-9e8ede8b8732_1757060047184.png";
-import heroVideo from "@assets/Hailuo_Video_[Push out,Pedestal up,Tilt dow_420146180540747777 (1)_1757059198337.mp4";
-import lavagemVideo1 from "@assets/lavagemmotos_1757068070374.mp4";
-import lavagemVideo2 from "@assets/lavagemmotos2_1757068070373.mp4";
-import lavagemVideo3 from "@assets/lavagemmotos3_1757068070371.mp4";
+import mainVideo from "@assets/main_1757071025653.mp4";
 
 export default function HeroSection() {
   const scrollToServices = () => {
@@ -14,54 +11,11 @@ export default function HeroSection() {
     });
   };
 
-  // Array de vídeos para rotação
-  const videos = [
-    heroVideo,
-    lavagemVideo1,
-    lavagemVideo2,
-    lavagemVideo3,
-  ];
-
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  // Função para gerar índice aleatório diferente do atual
-  const getRandomVideoIndex = (currentIndex: number) => {
-    const availableIndexes = videos.map((_, i) => i).filter(i => i !== currentIndex);
-    return availableIndexes[Math.floor(Math.random() * availableIndexes.length)];
-  };
-
-  // Sistema simplificado de rotação para mobile-friendly
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsTransitioning(true);
-      
-      setTimeout(() => {
-        setCurrentVideoIndex(prev => getRandomVideoIndex(prev));
-        setIsTransitioning(false);
-      }, 800); // Transição mais rápida
-      
-    }, 15000); // Intervalo um pouco maior
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Garantir que o vídeo seja reproduzido após mudança
-  useEffect(() => {
-    if (videoRef.current && !isTransitioning) {
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.log("Auto-play prevented:", error);
-        });
-      }
-    }
-  }, [currentVideoIndex, isTransitioning]);
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Video Background - Simplificado para mobile */}
+      {/* Video Background Principal */}
       <video 
         ref={videoRef}
         autoPlay 
@@ -69,19 +23,9 @@ export default function HeroSection() {
         loop 
         playsInline 
         poster="https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
-          isTransitioning ? 'opacity-30' : 'opacity-100'
-        }`}
-        key={currentVideoIndex}
-        onLoadStart={() => {
-          // Garantir reprodução no mobile
-          if (videoRef.current) {
-            videoRef.current.muted = true;
-            videoRef.current.play().catch(() => {});
-          }
-        }}
+        className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src={videos[currentVideoIndex]} type="video/mp4" />
+        <source src={mainVideo} type="video/mp4" />
       </video>
       
       <div className="absolute inset-0 video-overlay"></div>

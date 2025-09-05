@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import polimentoVideo from "@assets/polimento_1757071025670.mp4";
 
 export default function GallerySection() {
   const galleryImages = [
@@ -29,8 +30,20 @@ export default function GallerySection() {
   ];
 
   return (
-    <section id="galeria" className="py-10 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="galeria" className="relative py-10 overflow-hidden">
+      {/* Video Background */}
+      <video 
+        autoPlay 
+        muted 
+        loop 
+        playsInline 
+        className="absolute inset-0 w-full h-full object-cover opacity-15"
+      >
+        <source src={polimentoVideo} type="video/mp4" />
+      </video>
+      
+      <div className="absolute inset-0 bg-background/85"></div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-8"
           initial={{ opacity: 0, y: 30 }}

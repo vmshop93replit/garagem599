@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
 import { services } from "@/lib/services";
 import type { Service } from "@/lib/services";
+import lavagemVideo from "@assets/lavagem_1757071025648.mp4";
 
 interface ServicesSectionProps {
   onServiceSelect: (service: Service) => void;
@@ -9,8 +10,20 @@ interface ServicesSectionProps {
 
 export default function ServicesSection({ onServiceSelect }: ServicesSectionProps) {
   return (
-    <section id="servicos" className="py-12 bg-gradient-to-b from-background to-secondary/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="servicos" className="relative py-12 overflow-hidden">
+      {/* Video Background */}
+      <video 
+        autoPlay 
+        muted 
+        loop 
+        playsInline 
+        className="absolute inset-0 w-full h-full object-cover opacity-20"
+      >
+        <source src={lavagemVideo} type="video/mp4" />
+      </video>
+      
+      <div className="absolute inset-0 bg-gradient-to-b from-background/90 to-secondary/40"></div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-10"
           initial={{ opacity: 0, y: 30 }}
