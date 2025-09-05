@@ -28,19 +28,76 @@ export default function TestimonialsSection() {
 
   const testimonials = [
     {
-      name: "Roberto Silva",
-      initials: "RS",
-      text: "Excelente atendimento e qualidade impecável. Meu carro ficou como novo após a vitrificação. Recomendo!",
+      name: "Bruna F.",
+      initials: "BF",
+      text: "Fiz higienização interna e externa, meu carro voltou parecendo zero km. Fiquei muito surpresa com o cuidado nos detalhes, até o cheirinho ficou top. Recomendo demais.",
+      rating: 5,
     },
     {
-      name: "Maria Costa",
-      initials: "MC",
-      text: "Profissionais muito competentes. O polimento ficou perfeito e o prazo foi cumprido à risca.",
+      name: "Rodrigo M.",
+      initials: "RM", 
+      text: "Instalei som automotivo e foi a melhor coisa que fiz. Som limpo, grave forte e equipe explicou tudo certinho. Valeu cada centavo.",
+      rating: 5,
     },
     {
-      name: "João Santos",
+      name: "Aline C.",
+      initials: "AC",
+      text: "Apliquei insulfilm no carro e ficou perfeito, acabamento super discreto, nada de bolhas. Já indiquei pros meus amigos.",
+      rating: 5,
+    },
+    {
+      name: "Paulo H.",
+      initials: "PH",
+      text: "Fiz revisão elétrica e agora meu carro tá funcionando liso, sem falhar nada. Atendimento rápido e direto, gostei bastante.",
+      rating: 5,
+    },
+    {
+      name: "Jessica S.",
       initials: "JS",
-      text: "Melhor garagem da região! Trabalho impecável em auto elétrica. Voltarei sempre!",
+      text: "Levaram meu carro pro polimento e eu quase não reconheci na hora de pegar, brilho absurdo, parecia que tinha acabado de sair da concessionária.",
+      rating: 5,
+    },
+    {
+      name: "Lucas P.",
+      initials: "LP",
+      text: "Coloquei insulfilm faz 2 meses e até hoje tá intacto, sem nenhuma falha. Gostei da qualidade do material e da instalação.",
+      rating: 5,
+    },
+    {
+      name: "Mariana O.",
+      initials: "MO",
+      text: "Trabalho impecável, equipe muito educada e atenciosa. Fiquei tranquila em deixar o carro com eles, deu pra sentir confiança desde o começo.",
+      rating: 5,
+    },
+    {
+      name: "Eduardo A.",
+      initials: "EA",
+      text: "Coloquei o som completo no carro, parece até cinema dentro. Ficou incrível, não tenho do que reclamar.",
+      rating: 5,
+    },
+    {
+      name: "Camila R.",
+      initials: "CR",
+      text: "Fiz estética automotiva e limpeza geral, quando peguei o carro nem parecia o mesmo. Amei o resultado, muito capricho.",
+      rating: 5,
+    },
+    {
+      name: "Felipe N.",
+      initials: "FN",
+      text: "Atendimento top, pessoal atencioso, serviço rápido e bem feito. Nota mil pra empresa.",
+      rating: 5,
+    },
+    {
+      name: "Tatiane S.",
+      initials: "TS",
+      text: "Fiz higienização do ar condicionado e limpeza, melhorou até a saúde, agora não sinto mais aquele cheiro ruim. Serviço excelente.",
+      rating: 5,
+    },
+    {
+      name: "Renato L.",
+      initials: "RL",
+      text: "Fui pra instalar som, gostei muito, só achei que demorou um pouco além do combinado. Mas no final ficou ótimo.",
+      rating: 4,
     },
   ];
 
@@ -80,8 +137,8 @@ export default function TestimonialsSection() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-          {testimonials.map((testimonial, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+          {testimonials.slice(0, 8).map((testimonial, index) => (
             <motion.div
               key={index}
               className="bg-card rounded-xl p-4 border border-border"
@@ -100,7 +157,7 @@ export default function TestimonialsSection() {
                 <div>
                   <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
                   <div className="flex text-yellow-400">
-                    {[...Array(5)].map((_, i) => (
+                    {[...Array(testimonial.rating)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-current" />
                     ))}
                   </div>
