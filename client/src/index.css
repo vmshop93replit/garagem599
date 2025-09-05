@@ -254,3 +254,14 @@
             drop-shadow(0 0 28px rgba(14, 165, 233, 0.3));
   }
 }
+
+/* Transições mais suaves para mascarar separações de vídeo */
+section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Estilo especial para transições de vídeo background */
+.video-transition {
+  transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
+}

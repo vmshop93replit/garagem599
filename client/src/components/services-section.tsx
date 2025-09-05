@@ -63,6 +63,10 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
           ? 'bg-gradient-to-b from-background/95 to-secondary/50' 
           : 'bg-gradient-to-b from-background/80 to-secondary/30'
       }`}></div>
+      
+      {/* Gradientes de transição suave */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background via-background/50 to-transparent z-5"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/50 to-transparent z-5"></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-10"

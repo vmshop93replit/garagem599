@@ -140,6 +140,10 @@ export default function GallerySection() {
       <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
         isUserFocused ? 'bg-background/90' : 'bg-background/75'
       }`}></div>
+      
+      {/* Gradientes de transição suave */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background via-background/60 to-transparent z-5"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/60 to-transparent z-5"></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-8"
