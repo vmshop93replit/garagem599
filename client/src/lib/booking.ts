@@ -19,6 +19,14 @@ interface StoredBooking {
   timestamp: string;
 }
 
+// Função para gerar código único do agendamento no formato DDMMAAAAT00HRS
+export function generateBookingCode(date: string, time: string): string {
+  const [year, month, day] = date.split('-');
+  const [hours, minutes] = time.split(':');
+  
+  return `${day}${month}${year}T${hours}${minutes}HRS`;
+}
+
 export function generateTimeSlots(date: string, serviceDuration: number): string[] {
   const startHour = 8;
   const endHour = 19;
@@ -85,8 +93,8 @@ export function generateWhatsAppMessage(data: BookingData): string {
   const date = new Date(data.data + 'T00:00:00');
   const formattedDate = date.toLocaleDateString('pt-BR');
   
-  // Generate timestamp for reference
-  const timestamp = new Date().toISOString();
+  // Generate booking code
+  const bookingCode = generateBookingCode(data.data, startTime);
   
   const message = `🚀 AGENDAMENTO GARAGEM 599
 
@@ -98,7 +106,7 @@ export function generateWhatsAppMessage(data: BookingData): string {
 📅 Data: ${formattedDate}
 ⏰ Horário: ${startTime} → ${endTime}
 
-📋 Ref: ${timestamp}`;
+🏷️ CÓDIGO: ${bookingCode}`;
 
   return message;
 }

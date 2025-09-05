@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import type { Service } from "@/lib/services";
-import { generateTimeSlots, formatPhone, generateWhatsAppMessage } from "@/lib/booking";
+import { generateTimeSlots, formatPhone, generateWhatsAppMessage, generateBookingCode } from "@/lib/booking";
 
 const bookingSchema = z.object({
   nome: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
@@ -87,10 +87,13 @@ export default function BookingModal({ isOpen, onClose, service }: BookingModalP
         duracao: service.duration,
       });
 
-      // Save booking to localStorage
+      // Generate booking code and save to localStorage
+      const startTime = data.horario.includes(' - ') ? data.horario.split(' - ')[0] : data.horario;
+      const bookingCode = generateBookingCode(data.data, startTime);
+      
       const bookings = JSON.parse(localStorage.getItem('garagem599_bookings') || '[]');
       const newBooking = {
-        id: Date.now().toString(),
+        id: bookingCode,
         date: data.data,
         time: data.horario,
         duration: service.duration,
