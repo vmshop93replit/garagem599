@@ -53,6 +53,7 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
           isUserFocused ? 'opacity-15' : 'opacity-40'
         }`}
+        onError={(e) => console.error('Erro no vídeo services:', e)}
       >
         <source src={lavagemVideo} type="video/mp4" />
       </video>

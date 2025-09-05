@@ -132,6 +132,7 @@ export default function GallerySection() {
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
           isUserFocused ? 'opacity-10' : 'opacity-35'
         }`}
+        onError={(e) => console.error('Erro no vídeo gallery:', e)}
       >
         <source src={polimentoVideo} type="video/mp4" />
       </video>

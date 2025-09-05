@@ -55,6 +55,7 @@ export default function TestimonialsSection() {
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
           isUserFocused ? 'opacity-8' : 'opacity-30'
         }`}
+        onError={(e) => console.error('Erro no vídeo testimonials:', e)}
       >
         <source src={secarVideo} type="video/mp4" />
       </video>
