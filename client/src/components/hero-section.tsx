@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import { Calendar, MessageCircle } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import logoImage from "@assets/336f2e02-fa2f-41f1-930c-9e8ede8b8732_1757060047184.png";
 import heroVideo from "@assets/Hailuo_Video_[Push out,Pedestal up,Tilt dow_420146180540747777 (1)_1757059198337.mp4";
+import lavagemVideo1 from "@assets/lavagemmotos_1757068070374.mp4";
+import lavagemVideo2 from "@assets/lavagemmotos2_1757068070373.mp4";
+import lavagemVideo3 from "@assets/lavagemmotos3_1757068070371.mp4";
 
 export default function HeroSection() {
   const scrollToServices = () => {
@@ -10,19 +14,84 @@ export default function HeroSection() {
     });
   };
 
+  // Array de vídeos para rotação
+  const videos = [
+    heroVideo,
+    lavagemVideo1,
+    lavagemVideo2,
+    lavagemVideo3,
+  ];
+
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [nextVideoIndex, setNextVideoIndex] = useState(1);
+  const [fadeState, setFadeState] = useState('in'); // 'in', 'out'
+  const currentVideoRef = useRef<HTMLVideoElement>(null);
+  const nextVideoRef = useRef<HTMLVideoElement>(null);
+
+  // Função para gerar índice aleatório diferente do atual
+  const getRandomVideoIndex = (currentIndex: number) => {
+    const availableIndexes = videos.map((_, i) => i).filter(i => i !== currentIndex);
+    return availableIndexes[Math.floor(Math.random() * availableIndexes.length)];
+  };
+
+  // Gerenciar transições de vídeo
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Iniciar fade out
+      setFadeState('out');
+      
+      setTimeout(() => {
+        // Trocar vídeos e fazer fade in
+        setCurrentVideoIndex(nextVideoIndex);
+        setNextVideoIndex(getRandomVideoIndex(nextVideoIndex));
+        setFadeState('in');
+      }, 1500); // 1.5s para o fade out
+      
+    }, 12000); // Trocar vídeo a cada 12 segundos
+
+    return () => clearInterval(interval);
+  }, [nextVideoIndex]);
+
+  // Preload do próximo vídeo
+  useEffect(() => {
+    if (nextVideoRef.current) {
+      nextVideoRef.current.load();
+    }
+  }, [nextVideoIndex]);
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Video Background */}
-      <video 
-        autoPlay 
-        muted 
-        loop 
-        playsInline 
-        poster="https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src={heroVideo} type="video/mp4" />
-      </video>
+      {/* Video Background com Fade */}
+      <div className="absolute inset-0">
+        {/* Vídeo atual */}
+        <video 
+          ref={currentVideoRef}
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          poster="https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${
+            fadeState === 'in' ? 'opacity-100' : 'opacity-0'
+          }`}
+          key={currentVideoIndex}
+        >
+          <source src={videos[currentVideoIndex]} type="video/mp4" />
+        </video>
+
+        {/* Próximo vídeo (preload) */}
+        <video 
+          ref={nextVideoRef}
+          muted 
+          loop 
+          playsInline 
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none"
+          key={`next-${nextVideoIndex}`}
+        >
+          <source src={videos[nextVideoIndex]} type="video/mp4" />
+        </video>
+      </div>
       
       <div className="absolute inset-0 video-overlay"></div>
       

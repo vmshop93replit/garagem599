@@ -94,6 +94,20 @@
 @layer components {
   .video-overlay {
     background: linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
+    z-index: 1;
+  }
+  
+  /* Smooth video transitions */
+  video {
+    transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .video-fade-in {
+    animation: videoFadeIn 2s ease-in-out;
+  }
+  
+  .video-fade-out {
+    animation: videoFadeOut 1.5s ease-in-out;
   }
   
   .service-card {
@@ -152,6 +166,28 @@
   to { 
     opacity: 1; 
     transform: translateY(0); 
+  }
+}
+
+@keyframes videoFadeIn {
+  from { 
+    opacity: 0; 
+    transform: scale(1.05);
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+}
+
+@keyframes videoFadeOut {
+  from { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  to { 
+    opacity: 0; 
+    transform: scale(0.95);
   }
 }
 
