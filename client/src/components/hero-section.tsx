@@ -23,10 +23,8 @@ export default function HeroSection() {
   ];
 
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const [nextVideoIndex, setNextVideoIndex] = useState(1);
-  const [fadeState, setFadeState] = useState('in'); // 'in', 'out'
-  const currentVideoRef = useRef<HTMLVideoElement>(null);
-  const nextVideoRef = useRef<HTMLVideoElement>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Função para gerar índice aleatório diferente do atual
   const getRandomVideoIndex = (currentIndex: number) => {
@@ -34,64 +32,57 @@ export default function HeroSection() {
     return availableIndexes[Math.floor(Math.random() * availableIndexes.length)];
   };
 
-  // Gerenciar transições de vídeo
+  // Sistema simplificado de rotação para mobile-friendly
   useEffect(() => {
     const interval = setInterval(() => {
-      // Iniciar fade out
-      setFadeState('out');
+      setIsTransitioning(true);
       
       setTimeout(() => {
-        // Trocar vídeos e fazer fade in
-        setCurrentVideoIndex(nextVideoIndex);
-        setNextVideoIndex(getRandomVideoIndex(nextVideoIndex));
-        setFadeState('in');
-      }, 1500); // 1.5s para o fade out
+        setCurrentVideoIndex(prev => getRandomVideoIndex(prev));
+        setIsTransitioning(false);
+      }, 800); // Transição mais rápida
       
-    }, 12000); // Trocar vídeo a cada 12 segundos
+    }, 15000); // Intervalo um pouco maior
 
     return () => clearInterval(interval);
-  }, [nextVideoIndex]);
+  }, []);
 
-  // Preload do próximo vídeo
+  // Garantir que o vídeo seja reproduzido após mudança
   useEffect(() => {
-    if (nextVideoRef.current) {
-      nextVideoRef.current.load();
+    if (videoRef.current && !isTransitioning) {
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log("Auto-play prevented:", error);
+        });
+      }
     }
-  }, [nextVideoIndex]);
+  }, [currentVideoIndex, isTransitioning]);
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Video Background com Fade */}
-      <div className="absolute inset-0">
-        {/* Vídeo atual */}
-        <video 
-          ref={currentVideoRef}
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          poster="https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${
-            fadeState === 'in' ? 'opacity-100' : 'opacity-0'
-          }`}
-          key={currentVideoIndex}
-        >
-          <source src={videos[currentVideoIndex]} type="video/mp4" />
-        </video>
-
-        {/* Próximo vídeo (preload) */}
-        <video 
-          ref={nextVideoRef}
-          muted 
-          loop 
-          playsInline 
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none"
-          key={`next-${nextVideoIndex}`}
-        >
-          <source src={videos[nextVideoIndex]} type="video/mp4" />
-        </video>
-      </div>
+      {/* Video Background - Simplificado para mobile */}
+      <video 
+        ref={videoRef}
+        autoPlay 
+        muted 
+        loop 
+        playsInline 
+        poster="https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
+          isTransitioning ? 'opacity-30' : 'opacity-100'
+        }`}
+        key={currentVideoIndex}
+        onLoadStart={() => {
+          // Garantir reprodução no mobile
+          if (videoRef.current) {
+            videoRef.current.muted = true;
+            videoRef.current.play().catch(() => {});
+          }
+        }}
+      >
+        <source src={videos[currentVideoIndex]} type="video/mp4" />
+      </video>
       
       <div className="absolute inset-0 video-overlay"></div>
       
