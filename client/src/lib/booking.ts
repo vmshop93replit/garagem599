@@ -72,13 +72,18 @@ export function formatPhone(value: string): string {
 }
 
 export function generateWhatsAppMessage(data: BookingData): string {
-  // Calculate end time
-  const [hour, minute] = data.horario.split(':');
+  // Calculate end time - handle time slot format "HH:MM - HH:MM"
+  let startTime = data.horario;
+  if (data.horario.includes(' - ')) {
+    startTime = data.horario.split(' - ')[0];
+  }
+  
+  const [hour, minute] = startTime.split(':');
   const endHour = parseInt(hour) + Math.ceil(data.duracao);
   const endTime = `${endHour.toString().padStart(2, '0')}:${minute}`;
   
-  // Format date to Brazilian format
-  const date = new Date(data.data);
+  // Format date to Brazilian format - handle date input properly
+  const date = new Date(data.data + 'T00:00:00');
   const formattedDate = date.toLocaleDateString('pt-BR');
   
   // Generate timestamp for reference
@@ -92,7 +97,7 @@ Endereço: ${data.endereco}
 
 Serviço: ${data.servico}
 Data: ${formattedDate}
-Horário: ${data.horario} → término estimado: ${endTime}
+Horário: ${startTime} → término estimado: ${endTime}
 
 Observações: ${data.observacoes || 'Sem observações'}
 

@@ -270,7 +270,7 @@ export default function BookingModal({ isOpen, onClose, service }: BookingModalP
                             </FormControl>
                             <SelectContent>
                               {timeSlots.length === 0 ? (
-                                <SelectItem value="" disabled>
+                                <SelectItem value="no-slots" disabled>
                                   {selectedDate ? "Sem horários disponíveis" : "Selecione uma data primeiro"}
                                 </SelectItem>
                               ) : (
