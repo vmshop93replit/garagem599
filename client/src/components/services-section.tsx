@@ -26,7 +26,7 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
           </p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -42,10 +42,10 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
               <img 
                 src={service.image} 
                 alt={service.name} 
-                className="w-full h-32 object-cover rounded-lg mb-3"
+                className="w-full h-24 sm:h-32 object-cover rounded-lg mb-2 sm:mb-3"
               />
-              <h3 className="text-lg font-tech font-semibold text-foreground mb-2 leading-tight">{service.name}</h3>
-              <p className="text-muted-foreground mb-3 text-xs leading-tight">{service.description}</p>
+              <h3 className="text-sm sm:text-base font-tech font-semibold text-foreground mb-1 sm:mb-2 leading-tight">{service.name}</h3>
+              <p className="text-muted-foreground mb-2 sm:mb-3 text-xs leading-tight">{service.description}</p>
               <div className="flex justify-between items-center">
                 <span className="text-primary font-semibold" data-testid={`service-price-${service.id}`}>
                   {service.price}

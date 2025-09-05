@@ -43,13 +43,13 @@ export default function GallerySection() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3">
           {galleryImages.map((image, index) => (
             <motion.img
               key={index}
               src={image.src}
               alt={image.alt}
-              className="rounded-lg shadow-lg hover:shadow-xl transition-shadow w-full h-32 object-cover"
+              className="rounded-lg shadow-lg hover:shadow-xl transition-shadow w-full h-24 sm:h-32 object-cover"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}

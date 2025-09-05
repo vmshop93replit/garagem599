@@ -154,3 +154,30 @@
     transform: translateY(0); 
   }
 }
+
+/* Responsive Optimizations */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .container {
+    @apply px-4;
+  }
+  
+  /* Prevent horizontal overflow */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Better button sizing on mobile */
+  .btn-primary {
+    min-height: 44px;
+    padding: 12px 16px;
+  }
+}
+
+/* Container responsive padding */
+.container {
+  @apply mx-auto px-4 sm:px-6 lg:px-8;
+}

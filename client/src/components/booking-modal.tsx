@@ -140,16 +140,16 @@ export default function BookingModal({ isOpen, onClose, service }: BookingModalP
             exit={{ opacity: 0 }}
             onClick={onClose}
           />
-          <div className="fixed inset-0 flex items-center justify-center p-4">
+          <div className="fixed inset-0 flex items-center justify-center p-4 sm:p-6">
             <motion.div
-              className="bg-card rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-border"
+              className="bg-card rounded-2xl p-4 sm:p-6 md:p-8 max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto border border-border"
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-foreground">Agendar Serviço</h3>
+              <div className="flex justify-between items-center mb-4 sm:mb-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground">Agendar Serviço</h3>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -162,7 +162,7 @@ export default function BookingModal({ isOpen, onClose, service }: BookingModalP
               </div>
 
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       Serviço Selecionado
@@ -175,7 +175,7 @@ export default function BookingModal({ isOpen, onClose, service }: BookingModalP
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <FormField
                       control={form.control}
                       name="nome"
@@ -233,7 +233,7 @@ export default function BookingModal({ isOpen, onClose, service }: BookingModalP
                     )}
                   />
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <FormField
                       control={form.control}
                       name="data"
@@ -308,19 +308,19 @@ export default function BookingModal({ isOpen, onClose, service }: BookingModalP
                     )}
                   />
 
-                  <div className="flex gap-4 pt-4">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
                     <Button
                       type="button"
                       variant="outline"
                       onClick={onClose}
-                      className="flex-1"
+                      className="flex-1 w-full"
                       data-testid="button-cancel"
                     >
                       Cancelar
                     </Button>
                     <Button
                       type="submit"
-                      className="flex-1 btn-primary font-tech text-lg tracking-wider py-6 bg-gradient-to-r from-primary to-blue-600 hover:from-blue-600 hover:to-primary transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl border-none"
+                      className="flex-1 w-full btn-primary font-tech text-base sm:text-lg tracking-wider py-4 sm:py-6 bg-gradient-to-r from-primary to-blue-600 hover:from-blue-600 hover:to-primary transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl border-none"
                       disabled={form.formState.isSubmitting}
                       data-testid="button-submit"
                     >

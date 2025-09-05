@@ -11,7 +11,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Video Background */}
       <video 
         autoPlay 
@@ -38,7 +38,7 @@ export default function HeroSection() {
           animate={{ scale: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          <div className="w-64 h-64 mx-auto mb-8 flex items-center justify-center">
+          <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 mx-auto mb-6 md:mb-8 flex items-center justify-center">
             <img 
               src={logoImage} 
               alt="Garagem 599 Logo" 
@@ -48,7 +48,7 @@ export default function HeroSection() {
         </motion.div>
         
         <motion.h1 
-          className="text-4xl md:text-6xl lg:text-7xl font-tech font-black text-foreground mb-6 leading-tight tracking-wider"
+          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-tech font-black text-foreground mb-4 md:mb-6 leading-tight tracking-wider"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
@@ -58,7 +58,7 @@ export default function HeroSection() {
         </motion.h1>
         
         <motion.p 
-          className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
+          className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed px-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.5 }}
@@ -67,29 +67,29 @@ export default function HeroSection() {
         </motion.p>
         
         <motion.div 
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center px-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.8 }}
         >
           <button 
             onClick={scrollToServices}
-            className="btn-primary px-10 py-5 rounded-xl text-xl font-tech font-bold text-primary-foreground inline-flex items-center space-x-3 shadow-2xl tracking-wider transform hover:scale-110 transition-all duration-300"
+            className="btn-primary px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-xl text-lg sm:text-xl font-tech font-bold text-primary-foreground inline-flex items-center space-x-2 md:space-x-3 shadow-2xl tracking-wider transform hover:scale-105 transition-all duration-300 w-full sm:w-auto max-w-xs sm:max-w-none"
             data-testid="button-agende-agora"
           >
             <span>🚀 AGENDE AGORA</span>
-            <Calendar className="w-6 h-6" />
+            <Calendar className="w-5 h-5 md:w-6 md:h-6" />
           </button>
           
           <a 
             href="https://wa.me/5512987092879" 
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-4 rounded-xl text-lg font-semibold text-foreground border border-border hover:border-primary transition-all duration-300 inline-flex items-center space-x-2"
+            className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold text-foreground border border-border hover:border-primary transition-all duration-300 inline-flex items-center space-x-2 w-full sm:w-auto max-w-xs sm:max-w-none justify-center"
             data-testid="link-whatsapp"
           >
             <span>WhatsApp</span>
-            <MessageCircle className="w-5 h-5 text-green-500" />
+            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
           </a>
         </motion.div>
         
