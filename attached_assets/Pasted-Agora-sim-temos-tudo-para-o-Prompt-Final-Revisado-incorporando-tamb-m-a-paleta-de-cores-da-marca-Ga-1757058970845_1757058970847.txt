@@ -1,0 +1,168 @@
+Agora sim temos tudo para o Prompt Final Revisado, incorporando também a paleta de cores da marca Garagem 599:
+
+Cinza escuro / preto premium → fundo principal (paredes da loja).
+
+Azul vibrante → detalhes e destaques (botões, microinterações, hover).
+
+Branco / cinza claro → textos, equilíbrio visual, contraste.
+
+Amarelo suave/metálico (opcional) → usado pontualmente como cor de ação, inspirado em luzes/reflexos automotivos.
+
+Esse esquema vai transmitir exatamente o ambiente sofisticado da garagem real: paredes cinza, iluminação clean, linhas retas e detalhes modernos em azul.
+
+🚀 PROMPT FINAL REVISADO — GARAGEM 599
+
+Crie uma landing page premium responsiva para a Garagem 599, empresa especializada em estética automotiva, auto elétrica, som automotivo e insulfilm.
+
+O objetivo é converter clientes via agendamento direto para WhatsApp (sem backend, sem banco de dados).
+
+🎨 Identidade Visual
+
+Paleta baseada na identidade real da Garagem 599:
+
+Cinza escuro / preto premium (paredes da loja) como base.
+
+Azul vibrante para botões, destaques e microinterações.
+
+Branco e cinza claro para textos e contraste.
+
+Amarelo suave/metálico apenas em pequenos destaques.
+
+Design sofisticado, elegante, com linhas retas e estética moderna.
+
+Microinterações suaves com Framer Motion.
+
+Tipografia clean (ex: Inter).
+
+🖼️ Hero Section
+
+Vídeo em loop (com fallback poster) de alta qualidade como background.
+
+Logo da Garagem 599 sobreposta ao vídeo, com blend sutil.
+
+CTA forte → botão “Agende Agora” destacado em azul vibrante.
+
+Experiência imersiva, sem stuttering, fluida.
+
+🛠️ Serviços
+
+Serviços exibidos como cards premium com:
+
+Imagem (usar placeholder relacionado se não houver upload).
+
+Nome, descrição curta, preço ou badge “Sob Orçamento”.
+
+Duração aproximada.
+
+Clicar no card abre modal elegante para agendamento.
+
+Lista de Serviços (com valores simulados):
+
+Vitrificação 3 Anos | Hatch R$1.200 / Sedan R$1.500 / Pick-up R$1.800 | 6h
+
+Lavagem Simples | R$80 | 1h
+
+Lavagem Técnica | R$150 | 2h
+
+Higienização Completa | R$350 | 3h
+
+Polimento Técnico | R$700 | 3h
+
+Descontaminação de Pintura | R$250 | 2h
+
+Revitalizador Plásticos Externos | R$120 | 1h
+
+Revitalizador Plásticos Internos | R$100 | 1h
+
+Impermeabilizador Vidros/Parabrisa | R$180 | 1h
+
+Selante nos Pneus | R$60 | 1h
+
+Serviço de Detalhamento (combo proteção) | R$950 | 4h
+
+Auto Elétrica (troca lâmpadas, buzina, bomba, relês, vidros, arranque, alternador, correias) | Sob orçamento | 1h–3h
+
+Som Automotivo (kit som, alto-falantes, amplificador, promoções) | Sob orçamento | 2h–4h
+
+Insulfilm Profissional | Sob orçamento | 1.5h
+
+Pacotes/Promoções Especiais | Sob orçamento | variável
+
+📅 Modal de Agendamento
+
+Campos:
+
+Nome completo
+
+WhatsApp (com máscara BR)
+
+Endereço
+
+Serviço (preselecionado pelo card)
+
+Data (date picker)
+
+Horário (slots automáticos 08h–19h)
+
+Observações
+
+Checkbox LGPD obrigatório
+
+Slots respeitam duração do serviço. Ex: Lavagem = 1h, Higienização = 3h.
+
+Bloqueio de sobreposição usando apenas estado da sessão + localStorage.
+
+Se o dia lotar → mensagem: “Sem horários disponíveis — contate via WhatsApp”.
+
+📩 Fluxo de Confirmação
+
+Ao clicar em “Agendar Agora”, gerar mensagem formatada e abrir WhatsApp:
+
+Olá, Garagem 599! 👋
+
+Sou {NOME}.
+WhatsApp: {WHATSAPP}
+Endereço: {ENDERECO}
+
+Serviço: {SERVICO}
+Data: {DATA}
+Horário: {HORARIO} → término estimado: {TERMINO}
+
+Observações: {OBSERVACOES}
+
+Referência: {TIMESTAMP}
+
+
+Copiar mensagem para clipboard.
+
+Abrir https://wa.me/5512987092879?text=....
+
+Exibir feedback “Mensagem pronta, abrindo WhatsApp...”.
+
+Resetar interface → usuário pode agendar novamente.
+
+📦 Estrutura esperada
+
+Hero (vídeo + logo + CTA)
+
+Cards de Serviços (com modal agendamento)
+
+Sessão “Como Funciona” (passo a passo)
+
+Galeria (placeholders, depois substituída)
+
+Depoimentos (placeholders)
+
+Footer com contatos, mapa, redes sociais
+
+✅ Requisitos finais
+
+Projeto React + Vite + Tailwind.
+
+Framer Motion para micro UX.
+
+PWA leve → experiência mobile-first.
+
+SEO otimizado (title, description, keywords).
+
+Acessibilidade (A11y).
