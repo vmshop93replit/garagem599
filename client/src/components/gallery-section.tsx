@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import polimentoVideo from "@assets/polimento_1757071025670.mp4";
+import { realAssets, getRealAsset } from "@/lib/real-assets";
+import { OptimizedImage } from "@/components/optimized-image";
 
 export default function GallerySection() {
   const [isUserFocused, setIsUserFocused] = useState(false);
@@ -29,96 +31,22 @@ export default function GallerySection() {
 
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
+  // Sistema otimizado de assets reais organizados por categorias
   const galleryImages = [
-    // Seção 1 - Detalhamento Externo
-    {
-      src: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Carro após detalhamento premium",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Antes e depois polimento",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Cera premium aplicada",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Aplicação de vitrificação",
-    },
+    // Seção 1 - Detalhamento Externo (4 fotos)
+    ...realAssets.detailing,
     
-    // Seção 2 - Interior e Detalhes
-    {
-      src: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Interior limpo e detalhado",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Detalhamento de rodas",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Polimento de faróis",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1570610160323-6b8004d5f40b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Limpeza de motor",
-    },
+    // Seção 2 - Interior e Detalhes (4 fotos) 
+    ...realAssets.interior,
 
-    // Seção 3 - Lavagem e Acabamento
-    {
-      src: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Lavagem premium completa",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1599912027806-cfda9c53d705?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Espuma ativa na lavagem",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1605641590890-593f964ccd1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Secagem profissional",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Enceramento final",
-    },
+    // Seção 3 - Lavagem e Acabamento (4 fotos)
+    ...realAssets.washing,
 
-    // Seção 4 - Serviços Especializados
-    {
-      src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Sistema de som instalado",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Insulfilm aplicado",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Auto elétrica - instalação",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1506792006437-256b665541e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Restauração de peças",
-    },
+    // Seção 4 - Serviços Especializados (4 fotos)
+    ...realAssets.specialized,
 
-    // Seção 5 - Resultados Finais
-    {
-      src: "https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Resultado final - sedan premium",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "SUV após tratamento completo",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1507136849739-de1add2a68ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Esportivo vitrificado",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Picape detalhada",
-    },
+    // Seção 5 - Resultados Finais (4 fotos)
+    ...realAssets.results,
   ];
 
   return (
@@ -186,10 +114,16 @@ export default function GallerySection() {
                             onClick={() => setSelectedImage(actualIndex)}
                             data-testid={`gallery-image-${actualIndex}`}
                           >
-                            <img
+                            <OptimizedImage
                               src={image.src}
                               alt={image.alt}
                               className="w-full h-24 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105"
+                              priority={actualIndex < 4} // Prioriza primeiras 4 imagens
+                              fallbackSrc={
+                                actualIndex < 4 ? 
+                                `https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600` :
+                                undefined
+                              }
                             />
                             <p className="text-center text-xs text-muted-foreground mt-1 group-hover:text-primary transition-colors truncate">
                               {image.alt}
@@ -226,10 +160,11 @@ export default function GallerySection() {
               transition={{ type: "spring", duration: 0.5 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <OptimizedImage
                 src={galleryImages[selectedImage].src}
                 alt={galleryImages[selectedImage].alt}
                 className="w-full h-auto max-h-[80vh] object-contain rounded-lg shadow-2xl"
+                priority={true}
               />
               <button
                 onClick={() => setSelectedImage(null)}

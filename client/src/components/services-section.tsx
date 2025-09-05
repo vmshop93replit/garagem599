@@ -3,6 +3,7 @@ import { Clock } from "lucide-react";
 import { services } from "@/lib/services";
 import type { Service } from "@/lib/services";
 import { useState, useEffect } from "react";
+import { OptimizedImage } from "@/components/optimized-image";
 import lavagemVideo from "@assets/lavagem_1757071025648.mp4";
 
 interface ServicesSectionProps {
@@ -96,10 +97,12 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
               onClick={() => onServiceSelect(service)}
               data-testid={`service-card-${service.id}`}
             >
-              <img 
-                src={service.image} 
-                alt={service.name} 
+              <OptimizedImage
+                src={service.realImage || service.image}
+                alt={service.name}
                 className="w-full h-24 sm:h-32 object-cover rounded-lg mb-2 sm:mb-3"
+                fallbackSrc={service.image}
+                priority={index < 4}
               />
               <h3 className="text-sm sm:text-base font-tech font-semibold text-foreground mb-1 sm:mb-2 leading-tight">{service.name}</h3>
               <p className="text-muted-foreground mb-2 sm:mb-3 text-xs leading-tight">{service.description}</p>
