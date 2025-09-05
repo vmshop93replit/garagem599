@@ -30,6 +30,7 @@ export default function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const galleryImages = [
+    // Seção 1 - Detalhamento Externo
     {
       src: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
       alt: "Carro após detalhamento premium",
@@ -39,13 +40,51 @@ export default function GallerySection() {
       alt: "Antes e depois polimento",
     },
     {
-      src: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Interior limpo e detalhado",
+      src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Cera premium aplicada",
     },
     {
       src: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
       alt: "Aplicação de vitrificação",
     },
+    
+    // Seção 2 - Interior e Detalhes
+    {
+      src: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Interior limpo e detalhado",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Detalhamento de rodas",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Polimento de faróis",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1570610160323-6b8004d5f40b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Limpeza de motor",
+    },
+
+    // Seção 3 - Lavagem e Acabamento
+    {
+      src: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Lavagem premium completa",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1599912027806-cfda9c53d705?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Espuma ativa na lavagem",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1605641590890-593f964ccd1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Secagem profissional",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Enceramento final",
+    },
+
+    // Seção 4 - Serviços Especializados
     {
       src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
       alt: "Sistema de som instalado",
@@ -55,28 +94,30 @@ export default function GallerySection() {
       alt: "Insulfilm aplicado",
     },
     {
-      src: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Lavagem premium completa",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Polimento de faróis",
-    },
-    {
       src: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
       alt: "Auto elétrica - instalação",
     },
     {
-      src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Cera premium aplicada",
+      src: "https://images.unsplash.com/photo-1506792006437-256b665541e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Restauração de peças",
+    },
+
+    // Seção 5 - Resultados Finais
+    {
+      src: "https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Resultado final - sedan premium",
     },
     {
-      src: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Detalhamento de rodas",
+      src: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "SUV após tratamento completo",
     },
     {
-      src: "https://images.unsplash.com/photo-1570610160323-6b8004d5f40b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Limpeza de motor",
+      src: "https://images.unsplash.com/photo-1507136849739-de1add2a68ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Esportivo vitrificado",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Picape detalhada",
     },
   ];
 
@@ -111,32 +152,55 @@ export default function GallerySection() {
           </h2>
         </motion.div>
 
-        {/* Carrossel Horizontal */}
+        {/* Carrossel Horizontal por Seções */}
         <div className="relative">
+          {/* Indicador de scroll */}
+          <div className="flex justify-center mb-4 gap-2">
+            <span className="text-xs text-muted-foreground bg-secondary/50 px-3 py-1 rounded-full">
+              👈 Deslize para ver mais fotos →
+            </span>
+          </div>
+          
           <div className="overflow-x-auto scrollbar-hide">
-            <div className="flex gap-4 pb-4" style={{ width: `${galleryImages.length * 280}px` }}>
-              {galleryImages.map((image, index) => (
-                <motion.div
-                  key={index}
-                  className="flex-shrink-0 cursor-pointer group"
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  onClick={() => setSelectedImage(index)}
-                  data-testid={`gallery-image-${index}`}
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-64 h-40 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105"
-                  />
-                  <p className="text-center text-sm text-muted-foreground mt-2 group-hover:text-primary transition-colors">
-                    {image.alt}
-                  </p>
-                </motion.div>
+            <div className="flex gap-6 pb-4" style={{ width: `${Math.ceil(galleryImages.length / 4) * 320}px` }}>
+              {Array.from({ length: Math.ceil(galleryImages.length / 4) }).map((_, sectionIndex) => (
+                <div key={sectionIndex} className="flex-shrink-0">
+                  <div className="grid grid-cols-2 gap-3 w-80">
+                    {galleryImages
+                      .slice(sectionIndex * 4, sectionIndex * 4 + 4)
+                      .map((image, imageIndex) => {
+                        const actualIndex = sectionIndex * 4 + imageIndex;
+                        return (
+                          <motion.div
+                            key={actualIndex}
+                            className="cursor-pointer group"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: imageIndex * 0.1 }}
+                            viewport={{ once: true }}
+                            onClick={() => setSelectedImage(actualIndex)}
+                            data-testid={`gallery-image-${actualIndex}`}
+                          >
+                            <img
+                              src={image.src}
+                              alt={image.alt}
+                              className="w-full h-24 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105"
+                            />
+                            <p className="text-center text-xs text-muted-foreground mt-1 group-hover:text-primary transition-colors truncate">
+                              {image.alt}
+                            </p>
+                          </motion.div>
+                        );
+                      })}
+                  </div>
+                </div>
               ))}
             </div>
+          </div>
+          
+          {/* Indicador de mais conteúdo */}
+          <div className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gradient-to-l from-background via-background/80 to-transparent w-16 h-full flex items-center justify-end pr-2">
+            <span className="text-primary text-lg animate-pulse">→</span>
           </div>
         </div>
 
