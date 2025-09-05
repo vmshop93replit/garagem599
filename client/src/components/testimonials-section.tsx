@@ -1,8 +1,31 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import { useState, useEffect } from "react";
 import secarVideo from "@assets/secar_1757071025695.mp4";
 
 export default function TestimonialsSection() {
+  const [isUserFocused, setIsUserFocused] = useState(false);
+
+  // Detecção inteligente de foco
+  useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+    
+    const handleUserActivity = () => {
+      setIsUserFocused(false);
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => setIsUserFocused(true), 1500);
+    };
+
+    window.addEventListener('scroll', handleUserActivity);
+    document.addEventListener('mousemove', handleUserActivity);
+
+    return () => {
+      window.removeEventListener('scroll', handleUserActivity);
+      document.removeEventListener('mousemove', handleUserActivity);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+
   const testimonials = [
     {
       name: "Roberto Silva",
@@ -23,18 +46,22 @@ export default function TestimonialsSection() {
 
   return (
     <section className="relative py-10 overflow-hidden">
-      {/* Video Background */}
+      {/* Video Background Inteligente */}
       <video 
         autoPlay 
         muted 
         loop 
         playsInline 
-        className="absolute inset-0 w-full h-full object-cover opacity-10"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+          isUserFocused ? 'opacity-8' : 'opacity-30'
+        }`}
       >
         <source src={secarVideo} type="video/mp4" />
       </video>
       
-      <div className="absolute inset-0 bg-secondary/30"></div>
+      <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+        isUserFocused ? 'bg-secondary/40' : 'bg-secondary/20'
+      }`}></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-8"

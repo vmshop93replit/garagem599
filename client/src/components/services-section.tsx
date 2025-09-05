@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
 import { services } from "@/lib/services";
 import type { Service } from "@/lib/services";
+import { useState, useEffect } from "react";
 import lavagemVideo from "@assets/lavagem_1757071025648.mp4";
 
 interface ServicesSectionProps {
@@ -9,20 +10,58 @@ interface ServicesSectionProps {
 }
 
 export default function ServicesSection({ onServiceSelect }: ServicesSectionProps) {
+  const [isUserFocused, setIsUserFocused] = useState(false);
+  const [lastScrollTime, setLastScrollTime] = useState(Date.now());
+
+  // Detectar quando usuário para de rolar para focar no conteúdo
+  useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+    
+    const handleScroll = () => {
+      setLastScrollTime(Date.now());
+      setIsUserFocused(false);
+      
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setIsUserFocused(true);
+      }, 1500); // Usuário parado por 1.5s = focado
+    };
+
+    const handleMouseEnter = () => setIsUserFocused(true);
+    const handleMouseLeave = () => setIsUserFocused(false);
+
+    window.addEventListener('scroll', handleScroll);
+    document.addEventListener('mouseenter', handleMouseEnter);
+    document.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+
   return (
     <section id="servicos" className="relative py-12 overflow-hidden">
-      {/* Video Background */}
+      {/* Video Background Dinâmico */}
       <video 
         autoPlay 
         muted 
         loop 
         playsInline 
-        className="absolute inset-0 w-full h-full object-cover opacity-20"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+          isUserFocused ? 'opacity-15' : 'opacity-40'
+        }`}
       >
         <source src={lavagemVideo} type="video/mp4" />
       </video>
       
-      <div className="absolute inset-0 bg-gradient-to-b from-background/90 to-secondary/40"></div>
+      <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+        isUserFocused 
+          ? 'bg-gradient-to-b from-background/95 to-secondary/50' 
+          : 'bg-gradient-to-b from-background/80 to-secondary/30'
+      }`}></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-10"

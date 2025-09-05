@@ -1,7 +1,32 @@
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import polimentoVideo from "@assets/polimento_1757071025670.mp4";
 
 export default function GallerySection() {
+  const [isUserFocused, setIsUserFocused] = useState(false);
+
+  // Sistema inteligente de foco do usuário
+  useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+    
+    const handleScroll = () => {
+      setIsUserFocused(false);
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => setIsUserFocused(true), 1500);
+    };
+
+    const handleInteraction = () => setIsUserFocused(true);
+
+    window.addEventListener('scroll', handleScroll);
+    document.addEventListener('mouseenter', handleInteraction);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mouseenter', handleInteraction);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+
   const galleryImages = [
     {
       src: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
@@ -31,18 +56,22 @@ export default function GallerySection() {
 
   return (
     <section id="galeria" className="relative py-10 overflow-hidden">
-      {/* Video Background */}
+      {/* Video Background Responsivo */}
       <video 
         autoPlay 
         muted 
         loop 
         playsInline 
-        className="absolute inset-0 w-full h-full object-cover opacity-15"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+          isUserFocused ? 'opacity-10' : 'opacity-35'
+        }`}
       >
         <source src={polimentoVideo} type="video/mp4" />
       </video>
       
-      <div className="absolute inset-0 bg-background/85"></div>
+      <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+        isUserFocused ? 'bg-background/90' : 'bg-background/75'
+      }`}></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-8"
