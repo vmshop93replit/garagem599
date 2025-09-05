@@ -119,7 +119,7 @@ export default function Footer() {
               <img 
                 src={arckaneImage} 
                 alt="Arckane Codex" 
-                className="w-8 h-8 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                className="w-16 h-16 object-contain arckane-glow hover:scale-110 transition-all duration-300"
               />
             </div>
           </div>
