@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Facebook, Instagram, MessageCircle } from "lucide-react";
+import logoImage from "@assets/336f2e02-fa2f-41f1-930c-9e8ede8b8732_1757060047184.png";
 
 export default function Footer() {
   return (
@@ -13,8 +14,12 @@ export default function Footer() {
             viewport={{ once: true }}
           >
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">G</span>
+              <div className="w-10 h-10 flex items-center justify-center">
+                <img 
+                  src={logoImage} 
+                  alt="Garagem 599 Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <span className="text-2xl font-bold text-foreground">Garagem 599</span>
             </div>

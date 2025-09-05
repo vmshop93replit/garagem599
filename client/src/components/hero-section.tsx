@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Calendar, MessageCircle } from "lucide-react";
+import logoImage from "@assets/336f2e02-fa2f-41f1-930c-9e8ede8b8732_1757060047184.png";
+import heroVideo from "@assets/Hailuo_Video_[Push out,Pedestal up,Tilt dow_420146180540747777 (1)_1757059198337.mp4";
 
 export default function HeroSection() {
   const scrollToServices = () => {
@@ -19,7 +21,7 @@ export default function HeroSection() {
         poster="https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-automotive-workshop-with-professional-equipment-43579-large.mp4" type="video/mp4" />
+        <source src={heroVideo} type="video/mp4" />
       </video>
       
       <div className="absolute inset-0 video-overlay"></div>
@@ -36,8 +38,12 @@ export default function HeroSection() {
           animate={{ scale: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          <div className="w-24 h-24 bg-primary/20 backdrop-blur-sm rounded-2xl mx-auto mb-6 flex items-center justify-center border border-primary/30">
-            <span className="text-4xl font-bold text-primary">G599</span>
+          <div className="w-32 h-32 mx-auto mb-6 flex items-center justify-center">
+            <img 
+              src={logoImage} 
+              alt="Garagem 599 Logo" 
+              className="w-full h-full object-contain drop-shadow-2xl"
+            />
           </div>
         </motion.div>
         
