@@ -29,30 +29,27 @@ export default function GallerySection() {
   ];
 
   return (
-    <section id="galeria" className="py-20 bg-background">
+    <section id="galeria" className="py-10 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Nossa <span className="text-primary">Galeria</span>
+          <h2 className="text-2xl md:text-3xl font-tech font-bold text-foreground mb-3 tracking-wider">
+            NOSSA <span className="text-primary">GALERIA</span>
           </h2>
-          <p className="text-xl text-muted-foreground">
-            Veja alguns dos nossos trabalhos realizados
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           {galleryImages.map((image, index) => (
             <motion.img
               key={index}
               src={image.src}
               alt={image.alt}
-              className="rounded-xl shadow-lg hover:shadow-xl transition-shadow w-full h-64 object-cover"
+              className="rounded-lg shadow-lg hover:shadow-xl transition-shadow w-full h-32 object-cover"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}

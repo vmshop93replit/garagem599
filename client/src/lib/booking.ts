@@ -6,7 +6,6 @@ interface BookingData {
   preco: string;
   data: string;
   horario: string;
-  observacoes?: string;
   duracao: number;
 }
 
@@ -89,19 +88,17 @@ export function generateWhatsAppMessage(data: BookingData): string {
   // Generate timestamp for reference
   const timestamp = new Date().toISOString();
   
-  const message = `Olá, Garagem 599! 👋
+  const message = `🚀 AGENDAMENTO GARAGEM 599
 
-Sou ${data.nome}.
-WhatsApp: ${data.whatsapp}
-Endereço: ${data.endereco}
+👤 Cliente: ${data.nome}
+📱 WhatsApp: ${data.whatsapp}
+📍 Endereço: ${data.endereco}
 
-Serviço: ${data.servico}
-Data: ${formattedDate}
-Horário: ${startTime} → término estimado: ${endTime}
+🔧 Serviço: ${data.servico}
+📅 Data: ${formattedDate}
+⏰ Horário: ${startTime} → ${endTime}
 
-Observações: ${data.observacoes || 'Sem observações'}
-
-Referência: ${timestamp}`;
+📋 Ref: ${timestamp}`;
 
   return message;
 }

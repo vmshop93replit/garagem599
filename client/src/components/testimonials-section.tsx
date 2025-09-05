@@ -21,25 +21,25 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <section className="py-20 bg-secondary/20">
+    <section className="py-10 bg-secondary/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            O que dizem nossos <span className="text-primary">Clientes</span>
+          <h2 className="text-2xl md:text-3xl font-tech font-bold text-foreground mb-3 tracking-wider">
+            NOSSOS <span className="text-primary">CLIENTES</span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
-              className="bg-card rounded-xl p-6 border border-border"
+              className="bg-card rounded-xl p-4 border border-border"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}

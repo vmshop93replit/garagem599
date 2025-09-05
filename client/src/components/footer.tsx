@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Facebook, Instagram, MessageCircle } from "lucide-react";
 import logoImage from "@assets/336f2e02-fa2f-41f1-930c-9e8ede8b8732_1757060047184.png";
+import arckaneImage from "@assets/arckanecodex_1757065000833.gif";
 
 export default function Footer() {
   return (
@@ -106,10 +107,22 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        <div className="border-t border-border mt-12 pt-8 text-center">
-          <p className="text-muted-foreground">
-            © 2024 Garagem 599. Todos os direitos reservados.
-          </p>
+        <div className="border-t border-border mt-12 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-muted-foreground">
+              © 2024 Garagem 599. Todos os direitos reservados.
+            </p>
+            <div className="flex items-center gap-3">
+              <span className="text-xs text-muted-foreground font-tech tracking-wider">
+                Desenvolvido por Arckane Codex ®
+              </span>
+              <img 
+                src={arckaneImage} 
+                alt="Arckane Codex" 
+                className="w-8 h-8 object-contain opacity-70 hover:opacity-100 transition-opacity"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </footer>

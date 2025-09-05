@@ -38,7 +38,7 @@ export default function HeroSection() {
           animate={{ scale: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          <div className="w-32 h-32 mx-auto mb-6 flex items-center justify-center">
+          <div className="w-64 h-64 mx-auto mb-8 flex items-center justify-center">
             <img 
               src={logoImage} 
               alt="Garagem 599 Logo" 
@@ -48,13 +48,13 @@ export default function HeroSection() {
         </motion.div>
         
         <motion.h1 
-          className="text-4xl md:text-6xl lg:text-7xl font-black text-foreground mb-6 leading-tight"
+          className="text-4xl md:text-6xl lg:text-7xl font-tech font-black text-foreground mb-6 leading-tight tracking-wider"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
         >
-          Estética Automotiva
-          <span className="text-primary block">Premium</span>
+          ESTÉTICA AUTOMOTIVA
+          <span className="text-primary block">PREMIUM</span>
         </motion.h1>
         
         <motion.p 
@@ -74,11 +74,11 @@ export default function HeroSection() {
         >
           <button 
             onClick={scrollToServices}
-            className="btn-primary px-8 py-4 rounded-xl text-lg font-semibold text-primary-foreground inline-flex items-center space-x-2 shadow-lg"
+            className="btn-primary px-10 py-5 rounded-xl text-xl font-tech font-bold text-primary-foreground inline-flex items-center space-x-3 shadow-2xl tracking-wider transform hover:scale-110 transition-all duration-300"
             data-testid="button-agende-agora"
           >
-            <span>Agende Agora</span>
-            <Calendar className="w-5 h-5" />
+            <span>🚀 AGENDE AGORA</span>
+            <Calendar className="w-6 h-6" />
           </button>
           
           <a 

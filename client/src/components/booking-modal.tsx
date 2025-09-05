@@ -20,7 +20,6 @@ const bookingSchema = z.object({
   endereco: z.string().min(5, "Endereço deve ter pelo menos 5 caracteres"),
   data: z.string().min(1, "Data é obrigatória"),
   horario: z.string().min(1, "Horário é obrigatório"),
-  observacoes: z.string().optional(),
   lgpd: z.boolean().refine(val => val === true, "Você deve aceitar os termos LGPD"),
 });
 
@@ -44,7 +43,6 @@ export default function BookingModal({ isOpen, onClose, service }: BookingModalP
       endereco: "",
       data: "",
       horario: "",
-      observacoes: "",
       lgpd: false,
     },
   });
@@ -290,28 +288,6 @@ export default function BookingModal({ isOpen, onClose, service }: BookingModalP
 
                   <FormField
                     control={form.control}
-                    name="observacoes"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="flex items-center gap-2">
-                          <MessageSquare className="w-4 h-4" />
-                          Observações
-                        </FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Informações adicionais sobre seu veículo ou serviço..."
-                            rows={3}
-                            {...field}
-                            data-testid="textarea-observacoes"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
                     name="lgpd"
                     render={({ field }) => (
                       <FormItem className="flex flex-row items-start space-x-3 space-y-0">
@@ -344,11 +320,11 @@ export default function BookingModal({ isOpen, onClose, service }: BookingModalP
                     </Button>
                     <Button
                       type="submit"
-                      className="flex-1 btn-primary"
+                      className="flex-1 btn-primary font-tech text-lg tracking-wider py-6 bg-gradient-to-r from-primary to-blue-600 hover:from-blue-600 hover:to-primary transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl border-none"
                       disabled={form.formState.isSubmitting}
                       data-testid="button-submit"
                     >
-                      {form.formState.isSubmitting ? "Processando..." : "Agendar Agora"}
+                      {form.formState.isSubmitting ? "PROCESSANDO..." : "🚀 CONFIRMAR AGENDAMENTO"}
                     </Button>
                   </div>
                 </form>

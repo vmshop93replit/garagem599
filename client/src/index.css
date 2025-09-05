@@ -37,7 +37,8 @@
   --sidebar-accent-foreground: hsl(240 10% 6%);
   --sidebar-border: hsl(240 6% 20%);
   --sidebar-ring: hsl(199 89% 48%);
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Exo 2', system-ui, sans-serif;
+  --font-tech: 'Orbitron', monospace;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
   --radius: 0.75rem;
@@ -76,7 +77,17 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Exo 2', system-ui, sans-serif;
+  }
+  
+  .font-tech {
+    font-family: 'Orbitron', monospace;
+  }
+  
+  .text-tech {
+    font-family: 'Orbitron', monospace;
+    font-weight: 600;
+    letter-spacing: 0.05em;
   }
 }
 
