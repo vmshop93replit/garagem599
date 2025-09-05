@@ -1,5 +1,3 @@
-import { realAssets } from './real-assets';
-
 export interface Service {
   id: string;
   name: string;
@@ -7,7 +5,6 @@ export interface Service {
   price: string;
   duration: number;
   image: string;
-  realImage?: string; // Nova propriedade para imagens reais
 }
 
 export const services: Service[] = [
@@ -18,7 +15,6 @@ export const services: Service[] = [
     price: 'Hatch R$1.200 / Sedan R$1.500 / Pick-up R$1.800',
     duration: 6,
     image: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
-    realImage: realAssets.services.vitrificacao,
   },
   {
     id: 'lavagem-simples',

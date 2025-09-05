@@ -43,13 +43,13 @@ export default function TestimonialsSection() {
       name: "Aline C.",
       initials: "AC",
       text: "Apliquei insulfilm no carro e ficou perfeito, acabamento super discreto, nada de bolhas. Já indiquei pros meus amigos.",
-      rating: 5,
+      rating: 4,
     },
     {
       name: "Paulo H.",
       initials: "PH",
       text: "Fiz revisão elétrica e agora meu carro tá funcionando liso, sem falhar nada. Atendimento rápido e direto, gostei bastante.",
-      rating: 5,
+      rating: 4,
     },
     {
       name: "Jessica S.",
@@ -61,7 +61,7 @@ export default function TestimonialsSection() {
       name: "Lucas P.",
       initials: "LP",
       text: "Coloquei insulfilm faz 2 meses e até hoje tá intacto, sem nenhuma falha. Gostei da qualidade do material e da instalação.",
-      rating: 5,
+      rating: 4,
     },
     {
       name: "Mariana O.",
@@ -79,7 +79,7 @@ export default function TestimonialsSection() {
       name: "Camila R.",
       initials: "CR",
       text: "Fiz estética automotiva e limpeza geral, quando peguei o carro nem parecia o mesmo. Amei o resultado, muito capricho.",
-      rating: 5,
+      rating: 4,
     },
     {
       name: "Felipe N.",
@@ -91,7 +91,7 @@ export default function TestimonialsSection() {
       name: "Tatiane S.",
       initials: "TS",
       text: "Fiz higienização do ar condicionado e limpeza, melhorou até a saúde, agora não sinto mais aquele cheiro ruim. Serviço excelente.",
-      rating: 5,
+      rating: 4,
     },
     {
       name: "Renato L.",

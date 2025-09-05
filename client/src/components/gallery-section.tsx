@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import polimentoVideo from "@assets/polimento_1757071025670.mp4";
-import { realAssets, getRealAsset } from "@/lib/real-assets";
-import { OptimizedImage } from "@/components/optimized-image";
 
 export default function GallerySection() {
   const [isUserFocused, setIsUserFocused] = useState(false);
@@ -31,22 +29,87 @@ export default function GallerySection() {
 
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
-  // Sistema otimizado de assets reais organizados por categorias
   const galleryImages = [
-    // Seção 1 - Detalhamento Externo (4 fotos)
-    ...realAssets.detailing,
-    
-    // Seção 2 - Interior e Detalhes (4 fotos) 
-    ...realAssets.interior,
-
-    // Seção 3 - Lavagem e Acabamento (4 fotos)
-    ...realAssets.washing,
-
-    // Seção 4 - Serviços Especializados (4 fotos)
-    ...realAssets.specialized,
-
-    // Seção 5 - Resultados Finais (4 fotos)
-    ...realAssets.results,
+    {
+      src: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Detalhamento automotivo premium"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Lavagem profissional de veículo"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Interior de carro limpo"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Polimento de pintura automotiva"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Interior detalhado de veículo"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Sistema de som automotivo"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Aplicação de insulfilm"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Serviços de auto elétrica"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Vitrificação de pintura"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Processo de lavagem detalhada"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Carro após serviços completos"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Detalhes de acabamento automotivo"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Restauração de plásticos"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Revitalização de interior"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Tratamento de vidros"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1606016159611-be4ed3ba99b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Cuidados com pneus"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1562911791-c7a01be3a87d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Pacotes especiais de serviços"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Serviços elétricos especializados"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1600298881974-6be191ceeda1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Resultado final de detalhamento"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Serviços profissionais de estética automotiva"
+    }
   ];
 
   return (
@@ -114,16 +177,11 @@ export default function GallerySection() {
                             onClick={() => setSelectedImage(actualIndex)}
                             data-testid={`gallery-image-${actualIndex}`}
                           >
-                            <OptimizedImage
+                            <img
                               src={image.src}
                               alt={image.alt}
                               className="w-full h-24 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105"
-                              priority={actualIndex < 4} // Prioriza primeiras 4 imagens
-                              fallbackSrc={
-                                actualIndex < 4 ? 
-                                `https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600` :
-                                undefined
-                              }
+                              loading={actualIndex < 4 ? "eager" : "lazy"}
                             />
                             <p className="text-center text-xs text-muted-foreground mt-1 group-hover:text-primary transition-colors truncate">
                               {image.alt}
@@ -160,11 +218,11 @@ export default function GallerySection() {
               transition={{ type: "spring", duration: 0.5 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <OptimizedImage
+              <img
                 src={galleryImages[selectedImage].src}
                 alt={galleryImages[selectedImage].alt}
                 className="w-full h-auto max-h-[80vh] object-contain rounded-lg shadow-2xl"
-                priority={true}
+                loading="eager"
               />
               <button
                 onClick={() => setSelectedImage(null)}
