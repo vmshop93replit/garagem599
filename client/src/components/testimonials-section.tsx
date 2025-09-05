@@ -37,13 +37,13 @@ export default function TestimonialsSection() {
       name: "Rodrigo M.",
       initials: "RM", 
       text: "Instalei som automotivo e foi a melhor coisa que fiz. Som limpo, grave forte e equipe explicou tudo certinho. Valeu cada centavo.",
-      rating: 5,
+      rating: 4,
     },
     {
       name: "Aline C.",
       initials: "AC",
       text: "Apliquei insulfilm no carro e ficou perfeito, acabamento super discreto, nada de bolhas. Já indiquei pros meus amigos.",
-      rating: 4,
+      rating: 5,
     },
     {
       name: "Paulo H.",
@@ -67,7 +67,7 @@ export default function TestimonialsSection() {
       name: "Mariana O.",
       initials: "MO",
       text: "Trabalho impecável, equipe muito educada e atenciosa. Fiquei tranquila em deixar o carro com eles, deu pra sentir confiança desde o começo.",
-      rating: 5,
+      rating: 4,
     },
     {
       name: "Eduardo A.",
