@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Calendar, MessageCircle } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import logoImage from "@assets/336f2e02-fa2f-41f1-930c-9e8ede8b8732_1757060047184.png";
-import mainVideo from "@assets/main_1757071025653.mp4";
+import heroVideo from "@assets/Hailuo_Video_[Push out,Pedestal up,Tilt dow_420146180540747777 (1)_1757059198337.mp4";
 
 export default function HeroSection() {
   const scrollToServices = () => {
@@ -25,7 +25,7 @@ export default function HeroSection() {
         poster="https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src={mainVideo} type="video/mp4" />
+        <source src={heroVideo} type="video/mp4" />
       </video>
       
       <div className="absolute inset-0 video-overlay"></div>
