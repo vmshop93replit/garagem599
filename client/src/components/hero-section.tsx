@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Calendar, MessageCircle } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import logoImage from "../assets/images/logo.png";
-import heroVideo from "../assets/videos/hero-video.mp4";
+import logoImage from "/src/assets/images/logo.png";
+import heroVideo from "/src/assets/videos/hero-video.mp4";
 
 export default function HeroSection() {
   const scrollToServices = () => {
