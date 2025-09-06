@@ -14,7 +14,7 @@ export const services: Service[] = [
     description: 'Proteção premium com durabilidade de 3 anos',
     price: 'Hatch R$1.200 / Sedan R$1.500 / Pick-up R$1.800',
     duration: 6,
-    image: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1619431856706-ca2cc58258f6?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'lavagem-simples',
@@ -22,7 +22,7 @@ export const services: Service[] = [
     description: 'Limpeza externa básica com qualidade',
     price: 'R$ 80',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1632823469850-2f77dd9c7f93?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'lavagem-tecnica',
@@ -30,7 +30,7 @@ export const services: Service[] = [
     description: 'Limpeza detalhada com produtos específicos',
     price: 'R$ 150',
     duration: 2,
-    image: 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1708805282706-f44730b7e527?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'higienizacao-completa',
@@ -38,7 +38,7 @@ export const services: Service[] = [
     description: 'Limpeza e sanitização total do interior',
     price: 'R$ 350',
     duration: 3,
-    image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1605437241278-c1806d14a4d9?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'polimento-tecnico',
@@ -46,7 +46,7 @@ export const services: Service[] = [
     description: 'Correção de pintura e acabamento perfeito',
     price: 'R$ 700',
     duration: 3,
-    image: 'https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1632823470270-a7d3d03c3e20?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'descontaminacao-pintura',
@@ -54,7 +54,7 @@ export const services: Service[] = [
     description: 'Remoção de contaminantes da pintura',
     price: 'R$ 250',
     duration: 2,
-    image: 'https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1708805282676-0c15476eb8a2?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'revitalizador-plasticos-externos',
@@ -62,7 +62,7 @@ export const services: Service[] = [
     description: 'Restauração de plásticos externos',
     price: 'R$ 120',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1622329821376-a19fd6002562?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'revitalizador-plasticos-internos',
@@ -70,7 +70,7 @@ export const services: Service[] = [
     description: 'Revitalização de plásticos internos',
     price: 'R$ 100',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1620584899131-a5ff5f8fbb03?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'impermeabilizador-vidros',
@@ -78,7 +78,7 @@ export const services: Service[] = [
     description: 'Proteção e repelência de água nos vidros',
     price: 'R$ 180',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'selante-pneus',
@@ -86,7 +86,7 @@ export const services: Service[] = [
     description: 'Proteção e brilho para os pneus',
     price: 'R$ 60',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1606016159611-be4ed3ba99b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1708805282683-50a060eba80f?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'detalhamento-combo',
@@ -94,7 +94,7 @@ export const services: Service[] = [
     description: 'Pacote completo de detalhamento',
     price: 'R$ 950',
     duration: 4,
-    image: 'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1620584898989-d39f7f9ed1b7?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'auto-eletrica',
@@ -102,7 +102,7 @@ export const services: Service[] = [
     description: 'Serviços elétricos especializados (troca lâmpadas, buzina, bomba, relês, vidros, arranque, alternador, correias)',
     price: 'Sob orçamento',
     duration: 2,
-    image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'som-automotivo',
@@ -110,7 +110,7 @@ export const services: Service[] = [
     description: 'Instalação e setup de sistema de áudio (kit som, alto-falantes, amplificador, promoções)',
     price: 'Sob orçamento',
     duration: 3,
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1592570714618-15e2d4719c6c?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'insulfilm-profissional',
@@ -118,7 +118,7 @@ export const services: Service[] = [
     description: 'Aplicação profissional de películas',
     price: 'Sob orçamento',
     duration: 1.5,
-    image: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1756387461748-3eab2d58dbc5?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'pacotes-promocoes',
@@ -126,6 +126,6 @@ export const services: Service[] = [
     description: 'Ofertas especiais combinadas',
     price: 'Sob orçamento',
     duration: 4,
-    image: 'https://images.unsplash.com/photo-1562911791-c7a01be3a87d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
 ];
