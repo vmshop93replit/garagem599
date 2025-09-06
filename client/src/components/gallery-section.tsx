@@ -1,9 +1,20 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import polimentoVideo from "@assets/polimento_1757071025670.mp4";
+import { useState, useEffect, useMemo } from "react";
+// Novos vídeos para Gallery
+import bmwVideo from "@assets/bmw_1757120321561.mp4";
+import carro3Video from "@assets/carro3_1757120321564.mp4";
+import carroRedVideo from "@assets/carrored_1757120321564.mp4";
 
 export default function GallerySection() {
   const [isUserFocused, setIsUserFocused] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState(0);
+  
+  // Array de vídeos para rotação
+  const galleryVideos = useMemo(() => [
+    bmwVideo,
+    carro3Video,
+    carroRedVideo
+  ], []);
 
   // Sistema inteligente de foco do usuário
   useEffect(() => {
@@ -26,6 +37,17 @@ export default function GallerySection() {
       clearTimeout(scrollTimeout);
     };
   }, []);
+  
+  // Sistema de rotação automática de vídeos
+  useEffect(() => {
+    if (!isUserFocused) return;
+    
+    const videoInterval = setInterval(() => {
+      setCurrentVideo((prev) => (prev + 1) % galleryVideos.length);
+    }, 10000); // Troca vídeo a cada 10 segundos quando usuário focado
+    
+    return () => clearInterval(videoInterval);
+  }, [isUserFocused, galleryVideos.length]);
 
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
@@ -116,16 +138,18 @@ export default function GallerySection() {
     <section id="galeria" className="relative py-10 overflow-hidden">
       {/* Video Background Responsivo */}
       <video 
+        key={currentVideo}
         autoPlay 
         muted 
         loop 
         playsInline 
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-          isUserFocused ? 'opacity-10' : 'opacity-35'
+          isUserFocused ? 'opacity-10' : 'opacity-[0.35]'
         }`}
         onError={(e) => console.error('Erro no vídeo gallery:', e)}
+        data-testid="gallery-background-video"
       >
-        <source src={polimentoVideo} type="video/mp4" />
+        <source src={galleryVideos[currentVideo]} type="video/mp4" />
       </video>
       
       <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
@@ -133,8 +157,8 @@ export default function GallerySection() {
       }`}></div>
       
       {/* Gradientes de transição suave */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background via-background/60 to-transparent z-5"></div>
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/60 to-transparent z-5"></div>
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background via-background/60 to-transparent z-[5]"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/60 to-transparent z-[5]"></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-8"

@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { useState, useEffect } from "react";
-import secarVideo from "@assets/secar_1757071025695.mp4";
+// Novo vídeo para Testimonials
+import videoMotoVideo from "@assets/videomoto_1757120321565.mp4";
 
 export default function TestimonialsSection() {
   const [isUserFocused, setIsUserFocused] = useState(false);
@@ -110,11 +111,12 @@ export default function TestimonialsSection() {
         loop 
         playsInline 
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-          isUserFocused ? 'opacity-8' : 'opacity-30'
+          isUserFocused ? 'opacity-[0.08]' : 'opacity-30'
         }`}
         onError={(e) => console.error('Erro no vídeo testimonials:', e)}
+        data-testid="testimonials-background-video"
       >
-        <source src={secarVideo} type="video/mp4" />
+        <source src={videoMotoVideo} type="video/mp4" />
       </video>
       
       <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
@@ -122,8 +124,8 @@ export default function TestimonialsSection() {
       }`}></div>
       
       {/* Gradientes de transição suave */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-secondary via-secondary/60 to-transparent z-5"></div>
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-secondary via-secondary/60 to-transparent z-5"></div>
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-secondary via-secondary/60 to-transparent z-[5]"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-secondary via-secondary/60 to-transparent z-[5]"></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-8"

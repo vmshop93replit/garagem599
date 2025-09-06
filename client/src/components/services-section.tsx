@@ -2,8 +2,11 @@ import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
 import { services } from "@/lib/services";
 import type { Service } from "@/lib/services";
-import { useState, useEffect } from "react";
-import lavagemVideo from "@assets/lavagem_1757071025648.mp4";
+import { useState, useEffect, useMemo } from "react";
+// Novos vídeos para Services
+import lavagemMotos2Video from "@assets/lavagemmotos2_1757120321564.mp4";
+import lavagemMotos3Video from "@assets/lavagemmotos3_1757120321565.mp4";
+import carro2Video from "@assets/carro2_1757120321563.mp4";
 
 interface ServicesSectionProps {
   onServiceSelect: (service: Service) => void;
@@ -11,14 +14,20 @@ interface ServicesSectionProps {
 
 export default function ServicesSection({ onServiceSelect }: ServicesSectionProps) {
   const [isUserFocused, setIsUserFocused] = useState(false);
-  const [lastScrollTime, setLastScrollTime] = useState(Date.now());
+  const [currentVideo, setCurrentVideo] = useState(0);
+  
+  // Array de vídeos para rotação
+  const servicesVideos = useMemo(() => [
+    lavagemMotos2Video,
+    lavagemMotos3Video, 
+    carro2Video
+  ], []);
 
   // Detectar quando usuário para de rolar para focar no conteúdo
   useEffect(() => {
     let scrollTimeout: NodeJS.Timeout;
     
     const handleScroll = () => {
-      setLastScrollTime(Date.now());
       setIsUserFocused(false);
       
       clearTimeout(scrollTimeout);
@@ -41,21 +50,34 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
       clearTimeout(scrollTimeout);
     };
   }, []);
+  
+  // Sistema de rotação automática de vídeos
+  useEffect(() => {
+    if (!isUserFocused) return;
+    
+    const videoInterval = setInterval(() => {
+      setCurrentVideo((prev) => (prev + 1) % servicesVideos.length);
+    }, 8000); // Troca vídeo a cada 8 segundos quando usuário focado
+    
+    return () => clearInterval(videoInterval);
+  }, [isUserFocused, servicesVideos.length]);
 
   return (
     <section id="servicos" className="relative py-12 overflow-hidden">
       {/* Video Background Dinâmico */}
       <video 
+        key={currentVideo}
         autoPlay 
         muted 
         loop 
         playsInline 
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-          isUserFocused ? 'opacity-15' : 'opacity-40'
+          isUserFocused ? 'opacity-[0.15]' : 'opacity-40'
         }`}
         onError={(e) => console.error('Erro no vídeo services:', e)}
+        data-testid="services-background-video"
       >
-        <source src={lavagemVideo} type="video/mp4" />
+        <source src={servicesVideos[currentVideo]} type="video/mp4" />
       </video>
       
       <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
@@ -65,8 +87,8 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
       }`}></div>
       
       {/* Gradientes de transição suave */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background via-background/50 to-transparent z-5"></div>
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/50 to-transparent z-5"></div>
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background via-background/50 to-transparent z-[5]"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/50 to-transparent z-[5]"></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-10"
