@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Calendar, MessageCircle } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import logoImage from "@assets/336f2e02-fa2f-41f1-930c-9e8ede8b8732_1757060047184.png";
-import heroVideo from "@assets/Hailuo_Video_[Push out,Pedestal up,Tilt dow_420146180540747777 (1)_1757059198337.mp4";
+import logoImage from "../assets/images/logo.png";
+import heroVideo from "../assets/videos/hero-video.mp4";
 
 export default function HeroSection() {
   const scrollToServices = () => {

@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
 // Novos vídeos para Gallery
-import bmwVideo from "@assets/bmw_1757120321561.mp4";
-import carro3Video from "@assets/carro3_1757120321564.mp4";
-import carroRedVideo from "@assets/carrored_1757120321564.mp4";
+import bmwVideo from "../assets/videos/bmw-video.mp4";
+import carro3Video from "../assets/videos/carro3-video.mp4";
+import carroRedVideo from "../assets/videos/carrored-video.mp4";
 
 export default function GallerySection() {
   const [isUserFocused, setIsUserFocused] = useState(false);
