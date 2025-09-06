@@ -78,7 +78,7 @@ export const services: Service[] = [
     description: 'Proteção e repelência de água nos vidros',
     price: 'R$ 180',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1618329397023-cc688d12bb79?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'selante-pneus',
@@ -102,7 +102,7 @@ export const services: Service[] = [
     description: 'Serviços elétricos especializados (troca lâmpadas, buzina, bomba, relês, vidros, arranque, alternador, correias)',
     price: 'Sob orçamento',
     duration: 2,
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1592318348310-f31b61a931c8?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'som-automotivo',
@@ -118,7 +118,7 @@ export const services: Service[] = [
     description: 'Aplicação profissional de películas',
     price: 'Sob orçamento',
     duration: 1.5,
-    image: 'https://images.unsplash.com/photo-1756387461748-3eab2d58dbc5?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1643441431346-37cfc762b4c9?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
   {
     id: 'pacotes-promocoes',
@@ -126,6 +126,6 @@ export const services: Service[] = [
     description: 'Ofertas especiais combinadas',
     price: 'Sob orçamento',
     duration: 4,
-    image: 'https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1565689876697-e467b6c54da2?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
   },
 ];
