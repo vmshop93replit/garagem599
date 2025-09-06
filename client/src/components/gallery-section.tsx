@@ -53,84 +53,84 @@ export default function GallerySection() {
 
   const galleryImages = [
     {
-      src: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Detalhamento automotivo premium"
+      src: "https://images.unsplash.com/photo-1594070319944-7c0cbebb6f58?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Honda Civic preto bem conservado"
     },
     {
-      src: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Lavagem profissional de veículo"
+      src: "https://images.unsplash.com/photo-1636915873177-a0c1a48d84eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Honda Civic vermelho esportivo"
     },
     {
-      src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Interior de carro limpo"
+      src: "https://images.unsplash.com/photo-1570303278489-041bd897a873?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Honda vermelho bem cuidado"
     },
     {
-      src: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Polimento de pintura automotiva"
+      src: "https://images.unsplash.com/photo-1654870645915-de8afa6b3b30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Carro azul estacionado na rua"
     },
     {
-      src: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Interior detalhado de veículo"
+      src: "https://images.unsplash.com/photo-1631547891859-184677884115?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Carro branco lateral na estrada"
     },
     {
-      src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Sistema de som automotivo"
+      src: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Ford Explorer branco estacionado"
     },
     {
-      src: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Aplicação de insulfilm"
+      src: "https://images.unsplash.com/photo-1567788701545-850832a506b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Ford preto em paisagem urbana"
     },
     {
-      src: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Serviços de auto elétrica"
+      src: "https://images.unsplash.com/photo-1719488677248-552c4ad0a93e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Carro azul estacionamento"
     },
     {
-      src: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Vitrificação de pintura"
+      src: "https://images.unsplash.com/photo-1652509328308-7f0d7804e678?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Toyota prata bem conservado"
     },
     {
-      src: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Processo de lavagem detalhada"
+      src: "https://images.unsplash.com/photo-1657872737697-737a2d123ef2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Carro prata na lateral da estrada"
     },
     {
-      src: "https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Carro após serviços completos"
+      src: "https://images.unsplash.com/photo-1652509328300-9578821756c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Toyota branco sobre tijolos"
     },
     {
-      src: "https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Detalhes de acabamento automotivo"
+      src: "https://images.unsplash.com/photo-1638618164682-12b986ec2a75?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Carro branco lateral estrada"
     },
     {
-      src: "https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Restauração de plásticos"
+      src: "https://images.unsplash.com/photo-1547245324-d777c6f05e80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Toyota branco estacionado"
     },
     {
-      src: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Revitalização de interior"
+      src: "https://images.unsplash.com/photo-1623591457247-9dff667eae42?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Carro preto com luzes urbanas"
     },
     {
-      src: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Tratamento de vidros"
+      src: "https://images.unsplash.com/photo-1606577924006-27d39b132ae2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Honda engine bay bem cuidado"
     },
     {
-      src: "https://images.unsplash.com/photo-1606016159611-be4ed3ba99b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Cuidados com pneus"
+      src: "https://images.unsplash.com/photo-1696219733117-343bb58ffd32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Carro porta-malas aberto"
     },
     {
-      src: "https://images.unsplash.com/photo-1562911791-c7a01be3a87d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Pacotes especiais de serviços"
+      src: "https://images.unsplash.com/photo-1575844611398-2a68400b437c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Ford Mustang branco clássico"
     },
     {
-      src: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Serviços elétricos especializados"
+      src: "https://images.unsplash.com/photo-1611566026373-c6c8da0ea861?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "BMW azul em estrada"
     },
     {
-      src: "https://images.unsplash.com/photo-1600298881974-6be191ceeda1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Resultado final de detalhamento"
+      src: "https://images.unsplash.com/photo-1620882801951-a7b1521d1dc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "BMW M3 branco na calçada"
     },
     {
-      src: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Serviços profissionais de estética automotiva"
+      src: "https://images.unsplash.com/photo-1621993202323-f438eec934ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      alt: "Mercedes G63 preto"
     }
   ];
 
