@@ -15,6 +15,8 @@ interface ServicesSectionProps {
 export default function ServicesSection({ onServiceSelect }: ServicesSectionProps) {
   const [isUserFocused, setIsUserFocused] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(0);
+  const [nextVideo, setNextVideo] = useState(1);
+  const [showNext, setShowNext] = useState(false);
   
   // Array de vídeos para rotação
   const servicesVideos = useMemo(() => [
@@ -56,28 +58,51 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
     if (!isUserFocused) return;
     
     const videoInterval = setInterval(() => {
-      setCurrentVideo((prev) => (prev + 1) % servicesVideos.length);
+      // Prepare next video
+      setNextVideo((currentVideo + 1) % servicesVideos.length);
+      setShowNext(true);
+      
+      // After transition, swap videos
+      setTimeout(() => {
+        setCurrentVideo((currentVideo + 1) % servicesVideos.length);
+        setShowNext(false);
+        setNextVideo((currentVideo + 2) % servicesVideos.length);
+      }, 1500); // Half transition duration
     }, 8000); // Troca vídeo a cada 8 segundos quando usuário focado
     
     return () => clearInterval(videoInterval);
-  }, [isUserFocused, servicesVideos.length]);
+  }, [isUserFocused, servicesVideos.length, currentVideo]);
 
   return (
     <section id="servicos" className="relative py-12 overflow-hidden">
-      {/* Video Background Dinâmico */}
+      {/* Video Background Dinâmico - Video atual */}
       <video 
-        key={currentVideo}
         autoPlay 
         muted 
         loop 
         playsInline 
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-3000 ease-in-out ${
           isUserFocused ? 'opacity-[0.15]' : 'opacity-40'
-        }`}
-        onError={(e) => console.error('Erro no vídeo services:', e)}
-        data-testid="services-background-video"
+        } ${showNext ? 'opacity-0' : ''}`}
+        onError={(e) => console.error('Erro no vídeo services atual:', e)}
+        data-testid="services-background-video-current"
       >
         <source src={servicesVideos[currentVideo]} type="video/mp4" />
+      </video>
+      
+      {/* Video seguinte para crossfade */}
+      <video 
+        autoPlay 
+        muted 
+        loop 
+        playsInline 
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-3000 ease-in-out ${
+          isUserFocused ? 'opacity-[0.15]' : 'opacity-40'
+        } ${showNext ? '' : 'opacity-0'}`}
+        onError={(e) => console.error('Erro no vídeo services próximo:', e)}
+        data-testid="services-background-video-next"
+      >
+        <source src={servicesVideos[nextVideo]} type="video/mp4" />
       </video>
       
       <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${

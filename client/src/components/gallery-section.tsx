@@ -8,6 +8,8 @@ import carroRedVideo from "/src/assets/videos/carrored-video.mp4";
 export default function GallerySection() {
   const [isUserFocused, setIsUserFocused] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(0);
+  const [nextVideo, setNextVideo] = useState(1);
+  const [showNext, setShowNext] = useState(false);
   
   // Array de vídeos para rotação
   const galleryVideos = useMemo(() => [
@@ -43,11 +45,20 @@ export default function GallerySection() {
     if (!isUserFocused) return;
     
     const videoInterval = setInterval(() => {
-      setCurrentVideo((prev) => (prev + 1) % galleryVideos.length);
+      // Prepare next video
+      setNextVideo((currentVideo + 1) % galleryVideos.length);
+      setShowNext(true);
+      
+      // After transition, swap videos
+      setTimeout(() => {
+        setCurrentVideo((currentVideo + 1) % galleryVideos.length);
+        setShowNext(false);
+        setNextVideo((currentVideo + 2) % galleryVideos.length);
+      }, 1500); // Half transition duration
     }, 10000); // Troca vídeo a cada 10 segundos quando usuário focado
     
     return () => clearInterval(videoInterval);
-  }, [isUserFocused, galleryVideos.length]);
+  }, [isUserFocused, galleryVideos.length, currentVideo]);
 
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
@@ -137,19 +148,34 @@ export default function GallerySection() {
   return (
     <section id="galeria" className="relative py-10 overflow-hidden">
       {/* Video Background Responsivo */}
+      {/* Video atual */}
       <video 
-        key={currentVideo}
         autoPlay 
         muted 
         loop 
         playsInline 
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-3000 ease-in-out ${
           isUserFocused ? 'opacity-10' : 'opacity-[0.35]'
-        }`}
-        onError={(e) => console.error('Erro no vídeo gallery:', e)}
-        data-testid="gallery-background-video"
+        } ${showNext ? 'opacity-0' : ''}`}
+        onError={(e) => console.error('Erro no vídeo gallery atual:', e)}
+        data-testid="gallery-background-video-current"
       >
         <source src={galleryVideos[currentVideo]} type="video/mp4" />
+      </video>
+      
+      {/* Video seguinte para crossfade */}
+      <video 
+        autoPlay 
+        muted 
+        loop 
+        playsInline 
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-3000 ease-in-out ${
+          isUserFocused ? 'opacity-10' : 'opacity-[0.35]'
+        } ${showNext ? '' : 'opacity-0'}`}
+        onError={(e) => console.error('Erro no vídeo gallery próximo:', e)}
+        data-testid="gallery-background-video-next"
+      >
+        <source src={galleryVideos[nextVideo]} type="video/mp4" />
       </video>
       
       <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${

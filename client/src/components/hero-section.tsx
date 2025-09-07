@@ -36,7 +36,11 @@ export default function HeroSection() {
         <source src={heroVideo} type="video/mp4" />
       </video>
       
+      {/* Overlay para mascarar watermark e melhorar contraste */}
       <div className="absolute inset-0 video-overlay"></div>
+      
+      {/* Watermark mask - overlay sutil no canto inferior direito */}
+      <div className="absolute bottom-4 right-4 w-32 h-16 bg-gradient-to-tl from-background/70 to-transparent backdrop-blur-sm rounded-lg z-[5]"></div>
       
       <motion.div 
         className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
