@@ -97,9 +97,21 @@
     z-index: 1;
   }
   
-  /* Smooth video transitions */
+  /* Watermark mask mais natural */
+  .watermark-mask {
+    background: radial-gradient(
+      ellipse at bottom right,
+      rgba(15, 23, 42, 0.95) 0%,
+      rgba(15, 23, 42, 0.8) 35%,
+      rgba(15, 23, 42, 0.4) 60%,
+      transparent 80%
+    );
+    backdrop-filter: blur(1px);
+  }
+  
+  /* Smooth video transitions - duração mais longa para crossfade */
   video {
-    transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .video-fade-in {
