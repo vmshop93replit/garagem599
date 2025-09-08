@@ -68,17 +68,17 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
     };
   }, []);
   
-  // Controle de velocidade do vídeo para suavizar movimento
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.7; // 70% da velocidade normal
-    }
-  }, [currentVideo]);
-
   // Reset video index quando mudar tipo de veículo
   useEffect(() => {
     setCurrentVideo(0);
   }, [selectedVehicle]);
+
+  // Controle de velocidade baseado no tipo de veículo
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = selectedVehicle === 'moto' ? 0.7 : 1.0;
+    }
+  }, [selectedVehicle, currentVideo]);
   
   // Sistema de rotação automática de vídeos - simplificado
   useEffect(() => {
@@ -108,7 +108,7 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
         onError={(e) => console.error('Erro no vídeo services:', e)}
         onLoadedData={() => {
           if (videoRef.current) {
-            // Vídeos de moto precisam de velocidade reduzida
+            // Aplicar velocidade correta quando vídeo carrega
             videoRef.current.playbackRate = selectedVehicle === 'moto' ? 0.7 : 1.0;
           }
         }}
