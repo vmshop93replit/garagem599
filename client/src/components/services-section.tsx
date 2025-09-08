@@ -18,12 +18,20 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
   const [selectedVehicle, setSelectedVehicle] = useState<VehicleType>('car');
   const videoRef = useRef<HTMLVideoElement>(null);
   
-  // Array de vídeos para rotação
-  const servicesVideos = useMemo(() => [
-    lavagemMotos2Video,
-    lavagemMotos3Video, 
+  // Arrays de vídeos por tipo de veículo
+  const carVideos = useMemo(() => [
     carro2Video
   ], []);
+  
+  const motoVideos = useMemo(() => [
+    lavagemMotos2Video,
+    lavagemMotos3Video
+  ], []);
+  
+  // Selecionar vídeos baseado no veículo ativo
+  const servicesVideos = useMemo(() => {
+    return selectedVehicle === 'moto' ? motoVideos : carVideos;
+  }, [selectedVehicle, carVideos, motoVideos]);
 
   // Filtrar serviços baseado no veículo selecionado
   const filteredServices = useMemo(() => {
@@ -67,9 +75,14 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
     }
   }, [currentVideo]);
 
+  // Reset video index quando mudar tipo de veículo
+  useEffect(() => {
+    setCurrentVideo(0);
+  }, [selectedVehicle]);
+  
   // Sistema de rotação automática de vídeos - simplificado
   useEffect(() => {
-    if (!isUserFocused) return;
+    if (!isUserFocused || servicesVideos.length <= 1) return;
     
     const videoInterval = setInterval(() => {
       setCurrentVideo((prev) => (prev + 1) % servicesVideos.length);
@@ -80,10 +93,10 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
 
   return (
     <section id="servicos" className="relative py-12 overflow-hidden">
-      {/* Video Background Dinâmico - velocidade reduzida */}
+      {/* Video Background Dinâmico - responde ao tipo de veículo */}
       <video 
         ref={videoRef}
-        key={currentVideo}
+        key={`${selectedVehicle}-${currentVideo}`}
         autoPlay 
         muted 
         loop 
@@ -91,11 +104,12 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${
           isUserFocused ? 'opacity-[0.15]' : 'opacity-25'
         }`}
-        style={{ filter: 'blur(0.5px)' }}
+        style={{ filter: selectedVehicle === 'moto' ? 'blur(0.5px)' : 'blur(0px)' }}
         onError={(e) => console.error('Erro no vídeo services:', e)}
         onLoadedData={() => {
           if (videoRef.current) {
-            videoRef.current.playbackRate = 0.7;
+            // Vídeos de moto precisam de velocidade reduzida
+            videoRef.current.playbackRate = selectedVehicle === 'moto' ? 0.7 : 1.0;
           }
         }}
         data-testid="services-background-video"
