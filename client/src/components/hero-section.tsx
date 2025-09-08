@@ -40,7 +40,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 video-overlay"></div>
       
       {/* Watermark solution - Simula borda natural do vídeo */}
-      <div className="absolute bottom-0 right-0 w-[200px] h-[60px] video-corner-shadow z-[5] pointer-events-none"></div>
+      <div className="absolute bottom-0 right-0 w-[400px] h-[60px] video-corner-shadow z-[5] pointer-events-none"></div>
       
       <motion.div 
         className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
