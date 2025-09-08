@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
 import { services } from "@/lib/services";
 import type { Service } from "@/lib/services";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 // Novos vídeos para Services
 import lavagemMotos2Video from "@assets/lavagemmotos2_1757120321564.mp4";
 import lavagemMotos3Video from "@assets/lavagemmotos3_1757120321565.mp4";
@@ -15,6 +15,7 @@ interface ServicesSectionProps {
 export default function ServicesSection({ onServiceSelect }: ServicesSectionProps) {
   const [isUserFocused, setIsUserFocused] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
   
   // Array de vídeos para rotação
   const servicesVideos = useMemo(() => [
@@ -51,30 +52,44 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
     };
   }, []);
   
+  // Controle de velocidade do vídeo para suavizar movimento
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.7; // 70% da velocidade normal
+    }
+  }, [currentVideo]);
+
   // Sistema de rotação automática de vídeos - simplificado
   useEffect(() => {
     if (!isUserFocused) return;
     
     const videoInterval = setInterval(() => {
       setCurrentVideo((prev) => (prev + 1) % servicesVideos.length);
-    }, 8000); // Troca vídeo a cada 8 segundos quando usuário focado
+    }, 12000); // Troca vídeo a cada 12 segundos (mais tempo para observar)
     
     return () => clearInterval(videoInterval);
   }, [isUserFocused, servicesVideos.length]);
 
   return (
     <section id="servicos" className="relative py-12 overflow-hidden">
-      {/* Video Background Dinâmico - simplificado */}
+      {/* Video Background Dinâmico - velocidade reduzida */}
       <video 
+        ref={videoRef}
         key={currentVideo}
         autoPlay 
         muted 
         loop 
         playsInline 
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${
-          isUserFocused ? 'opacity-[0.15]' : 'opacity-30'
+          isUserFocused ? 'opacity-[0.15]' : 'opacity-25'
         }`}
+        style={{ filter: 'blur(0.5px)' }}
         onError={(e) => console.error('Erro no vídeo services:', e)}
+        onLoadedData={() => {
+          if (videoRef.current) {
+            videoRef.current.playbackRate = 0.7;
+          }
+        }}
         data-testid="services-background-video"
       >
         <source src={servicesVideos[currentVideo]} type="video/mp4" />
