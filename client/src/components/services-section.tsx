@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
-import { Clock } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Clock, Car, Bike } from "lucide-react";
 import { services } from "@/lib/services";
-import type { Service } from "@/lib/services";
+import type { Service, VehicleType } from "@/lib/services";
 import { useState, useEffect, useMemo, useRef } from "react";
 // Novos vídeos para Services
 import lavagemMotos2Video from "@assets/lavagemmotos2_1757120321564.mp4";
@@ -15,6 +15,7 @@ interface ServicesSectionProps {
 export default function ServicesSection({ onServiceSelect }: ServicesSectionProps) {
   const [isUserFocused, setIsUserFocused] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(0);
+  const [selectedVehicle, setSelectedVehicle] = useState<VehicleType>('car');
   const videoRef = useRef<HTMLVideoElement>(null);
   
   // Array de vídeos para rotação
@@ -23,6 +24,13 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
     lavagemMotos3Video, 
     carro2Video
   ], []);
+
+  // Filtrar serviços baseado no veículo selecionado
+  const filteredServices = useMemo(() => {
+    return services.filter(service => 
+      service.vehicleType === selectedVehicle || service.vehicleType === 'both'
+    );
+  }, [selectedVehicle]);
 
   // Detectar quando usuário para de rolar para focar no conteúdo
   useEffect(() => {
@@ -115,45 +123,83 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
           <h2 className="text-3xl md:text-4xl font-tech font-bold text-foreground mb-4 tracking-wider">
             NOSSOS <span className="text-primary">SERVIÇOS</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
             Gama completa de serviços especializados para seu veículo
           </p>
+          
+          {/* Toggle Carro/Moto */}
+          <div className="flex justify-center mb-8">
+            <div className="bg-background/20 backdrop-blur-md border border-border/50 rounded-full p-1 flex gap-1">
+              <button
+                onClick={() => setSelectedVehicle('car')}
+                className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 font-tech font-semibold ${
+                  selectedVehicle === 'car'
+                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/30'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-background/30'
+                }`}
+                data-testid="vehicle-toggle-car"
+              >
+                <Car className="w-5 h-5" />
+                CARROS
+              </button>
+              <button
+                onClick={() => setSelectedVehicle('moto')}
+                className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 font-tech font-semibold ${
+                  selectedVehicle === 'moto'
+                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/30'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-background/30'
+                }`}
+                data-testid="vehicle-toggle-moto"
+              >
+                <Bike className="w-5 h-5" />
+                MOTOS
+              </button>
+            </div>
+          </div>
         </motion.div>
         
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.id}
-              className="service-card rounded-xl p-4 cursor-pointer"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-              onClick={() => onServiceSelect(service)}
-              data-testid={`service-card-${service.id}`}
-            >
-              <img
-                src={service.image}
-                alt={service.name}
-                className="w-full h-24 sm:h-32 object-cover rounded-lg mb-2 sm:mb-3"
-                loading={index < 4 ? "eager" : "lazy"}
-                data-testid={`service-image-${service.id}`}
-              />
-              <h3 className="text-sm sm:text-base font-tech font-semibold text-foreground mb-1 sm:mb-2 leading-tight">{service.name}</h3>
-              <p className="text-muted-foreground mb-2 sm:mb-3 text-xs leading-tight">{service.description}</p>
-              <div className="flex justify-between items-center">
-                <span className="text-primary font-semibold" data-testid={`service-price-${service.id}`}>
-                  {service.price}
-                </span>
-                <span className="text-accent text-sm flex items-center gap-1">
-                  <Clock className="w-4 h-4" />
-                  {service.duration}h
-                </span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={selectedVehicle}
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            {filteredServices.map((service, index) => (
+              <motion.div
+                key={service.id}
+                className="service-card rounded-xl p-4 cursor-pointer"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                whileHover={{ scale: 1.02 }}
+                onClick={() => onServiceSelect(service)}
+                data-testid={`service-card-${service.id}`}
+              >
+                <img
+                  src={service.image}
+                  alt={service.name}
+                  className="w-full h-24 sm:h-32 object-cover rounded-lg mb-2 sm:mb-3"
+                  loading={index < 4 ? "eager" : "lazy"}
+                  data-testid={`service-image-${service.id}`}
+                />
+                <h3 className="text-sm sm:text-base font-tech font-semibold text-foreground mb-1 sm:mb-2 leading-tight">{service.name}</h3>
+                <p className="text-muted-foreground mb-2 sm:mb-3 text-xs leading-tight">{service.description}</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-primary font-semibold" data-testid={`service-price-${service.id}`}>
+                    {service.price}
+                  </span>
+                  <span className="text-accent text-sm flex items-center gap-1">
+                    <Clock className="w-4 h-4" />
+                    {service.duration}h
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
