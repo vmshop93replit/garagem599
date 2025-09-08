@@ -39,8 +39,8 @@ export default function HeroSection() {
       {/* Overlay para mascarar watermark e melhorar contraste */}
       <div className="absolute inset-0 video-overlay"></div>
       
-      {/* Watermark solution - Simula borda natural do vídeo - cobertura total */}
-      <div className="absolute bottom-0 left-0 right-0 w-full h-[60px] video-corner-shadow z-[5] pointer-events-none"></div>
+      {/* Watermark solution - Gradiente escuro como seção services */}
+      <div className="absolute bottom-0 left-0 right-0 w-full h-[60px] bg-gradient-to-t from-background via-background/50 to-transparent z-[5] pointer-events-none"></div>
       
       <motion.div 
         className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
