@@ -5,7 +5,10 @@ export interface Service {
   price: string;
   duration: number;
   image: string;
+  vehicleType: 'car' | 'moto' | 'both';
 }
+
+export type VehicleType = 'car' | 'moto';
 
 export const services: Service[] = [
   {
@@ -15,6 +18,7 @@ export const services: Service[] = [
     price: 'Hatch R$1.200 / Sedan R$1.500 / Pick-up R$1.800',
     duration: 6,
     image: 'https://images.unsplash.com/photo-1619431856706-ca2cc58258f6?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'car',
   },
   {
     id: 'lavagem-simples',
@@ -23,6 +27,7 @@ export const services: Service[] = [
     price: 'R$ 80',
     duration: 1,
     image: 'https://images.unsplash.com/photo-1632823469850-2f77dd9c7f93?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'both',
   },
   {
     id: 'lavagem-tecnica',
@@ -31,6 +36,7 @@ export const services: Service[] = [
     price: 'R$ 150',
     duration: 2,
     image: 'https://images.unsplash.com/photo-1708805282706-f44730b7e527?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'car',
   },
   {
     id: 'higienizacao-completa',
@@ -39,6 +45,7 @@ export const services: Service[] = [
     price: 'R$ 350',
     duration: 3,
     image: 'https://images.unsplash.com/photo-1605437241278-c1806d14a4d9?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'car',
   },
   {
     id: 'polimento-tecnico',
@@ -47,6 +54,7 @@ export const services: Service[] = [
     price: 'R$ 700',
     duration: 3,
     image: 'https://images.unsplash.com/photo-1632823470270-a7d3d03c3e20?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'car',
   },
   {
     id: 'descontaminacao-pintura',
@@ -55,6 +63,7 @@ export const services: Service[] = [
     price: 'R$ 250',
     duration: 2,
     image: 'https://images.unsplash.com/photo-1708805282676-0c15476eb8a2?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'car',
   },
   {
     id: 'revitalizador-plasticos-externos',
@@ -63,6 +72,7 @@ export const services: Service[] = [
     price: 'R$ 120',
     duration: 1,
     image: 'https://images.unsplash.com/photo-1622329821376-a19fd6002562?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'both',
   },
   {
     id: 'revitalizador-plasticos-internos',
@@ -71,6 +81,7 @@ export const services: Service[] = [
     price: 'R$ 100',
     duration: 1,
     image: 'https://images.unsplash.com/photo-1620584899131-a5ff5f8fbb03?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'car',
   },
   {
     id: 'impermeabilizador-vidros',
@@ -79,6 +90,7 @@ export const services: Service[] = [
     price: 'R$ 180',
     duration: 1,
     image: 'https://images.unsplash.com/photo-1618329397023-cc688d12bb79?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'both',
   },
   {
     id: 'selante-pneus',
@@ -87,6 +99,7 @@ export const services: Service[] = [
     price: 'R$ 60',
     duration: 1,
     image: 'https://images.unsplash.com/photo-1708805282683-50a060eba80f?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'both',
   },
   {
     id: 'detalhamento-combo',
@@ -95,6 +108,7 @@ export const services: Service[] = [
     price: 'R$ 950',
     duration: 4,
     image: 'https://images.unsplash.com/photo-1620584898989-d39f7f9ed1b7?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'car',
   },
   {
     id: 'auto-eletrica',
@@ -103,6 +117,7 @@ export const services: Service[] = [
     price: 'Sob orçamento',
     duration: 2,
     image: 'https://images.unsplash.com/photo-1592318348310-f31b61a931c8?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'both',
   },
   {
     id: 'som-automotivo',
@@ -111,6 +126,7 @@ export const services: Service[] = [
     price: 'Sob orçamento',
     duration: 3,
     image: 'https://images.unsplash.com/photo-1592570714618-15e2d4719c6c?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'both',
   },
   {
     id: 'insulfilm-profissional',
@@ -119,6 +135,7 @@ export const services: Service[] = [
     price: 'Sob orçamento',
     duration: 1.5,
     image: 'https://images.unsplash.com/photo-1643441431346-37cfc762b4c9?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'car',
   },
   {
     id: 'pacotes-promocoes',
@@ -127,5 +144,43 @@ export const services: Service[] = [
     price: 'Sob orçamento',
     duration: 4,
     image: 'https://images.unsplash.com/photo-1565689876697-e467b6c54da2?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'both',
+  },
+  // Serviços específicos para motos
+  {
+    id: 'lavagem-detalhada-moto',
+    name: 'Lavagem Detalhada Moto',
+    description: 'Limpeza completa especializada para motos',
+    price: 'R$ 60',
+    duration: 1.5,
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'moto',
+  },
+  {
+    id: 'polimento-carenagem',
+    name: 'Polimento de Carenagem',
+    description: 'Polimento e proteção de carenagens e tanque',
+    price: 'R$ 180',
+    duration: 2,
+    image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'moto',
+  },
+  {
+    id: 'limpeza-motor-moto',
+    name: 'Limpeza de Motor Moto',
+    description: 'Limpeza especializada do motor da moto',
+    price: 'R$ 120',
+    duration: 1,
+    image: 'https://images.unsplash.com/photo-1558618666-e5dff58bc9a3?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'moto',
+  },
+  {
+    id: 'enceramento-moto',
+    name: 'Enceramento Premium Moto',
+    description: 'Enceramento e proteção completa da moto',
+    price: 'R$ 150',
+    duration: 2,
+    image: 'https://images.unsplash.com/photo-1558618590-fbd7d1d50c78?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    vehicleType: 'moto',
   },
 ];
