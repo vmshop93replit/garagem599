@@ -40,7 +40,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 video-overlay"></div>
       
       {/* Watermark solution - Gradiente mais escuro para cobertura total */}
-      <div className="absolute bottom-0 left-0 right-0 w-full h-[60px] bg-gradient-to-t from-background via-background/90 to-background/20 z-[5] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 right-0 w-full h-[100px] bg-gradient-to-t from-background via-background/90 to-background/20 z-[5] pointer-events-none"></div>
       
       <motion.div 
         className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
