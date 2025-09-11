@@ -1,8 +1,6 @@
 // Imagens reais para serviços de moto
 import motoImg1 from "@assets/WhatsApp Image 2025-09-11 at 16.38.39_1757627516523.jpeg";
 import motoImg2 from "@assets/WhatsApp Image 2025-09-11 at 16.38.40 (2)_1757627516524.jpeg";
-import motoImg3 from "@assets/WhatsApp Image 2025-09-11 at 16.38.40 (4)_1757627516525.jpeg";
-import motoImg4 from "@assets/WhatsApp Image 2025-09-11 at 16.38.58_1757627516526.jpeg";
 
 export interface Service {
   id: string;
@@ -154,39 +152,21 @@ export const services: Service[] = [
   },
   // Serviços específicos para motos
   {
-    id: 'lavagem-detalhada-moto',
-    name: 'Lavagem Detalhada Moto',
-    description: 'Limpeza completa especializada para motos',
+    id: 'lavagem-moto',
+    name: 'Lavagem de Moto',
+    description: 'Limpeza completa especializada para motocicletas',
     price: 'R$ 60',
     duration: 1.5,
     image: motoImg1,
     vehicleType: 'moto',
   },
   {
-    id: 'polimento-carenagem',
-    name: 'Polimento de Carenagem',
-    description: 'Polimento e proteção de carenagens e tanque',
+    id: 'cristalizacao-moto',
+    name: 'Cristalização Moto',
+    description: 'Proteção e cristalização especializada para motos',
     price: 'R$ 180',
     duration: 2,
     image: motoImg2,
-    vehicleType: 'moto',
-  },
-  {
-    id: 'limpeza-motor-moto',
-    name: 'Limpeza de Motor Moto',
-    description: 'Limpeza especializada do motor da moto',
-    price: 'R$ 120',
-    duration: 1,
-    image: motoImg3,
-    vehicleType: 'moto',
-  },
-  {
-    id: 'enceramento-moto',
-    name: 'Enceramento Premium Moto',
-    description: 'Enceramento e proteção completa da moto',
-    price: 'R$ 150',
-    duration: 2,
-    image: motoImg4,
     vehicleType: 'moto',
   },
 ];
