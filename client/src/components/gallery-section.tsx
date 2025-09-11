@@ -5,7 +5,7 @@ import bmwVideo from "/src/assets/videos/bmw-video.mp4";
 import carro3Video from "/src/assets/videos/carro3-video.mp4";
 import carroRedVideo from "/src/assets/videos/carrored-video.mp4";
 
-// Imagens reais da Garagem 599
+// Imagens reais da Garagem 599 - Carros
 import galleryImg1 from "@assets/WhatsApp Image 2025-09-11 at 16.38.26 (1)_1757625591247.jpeg";
 import galleryImg2 from "@assets/WhatsApp Image 2025-09-11 at 16.38.26 (2)_1757625591248.jpeg";
 import galleryImg3 from "@assets/WhatsApp Image 2025-09-11 at 16.38.26 (3)_1757625591248.jpeg";
@@ -14,6 +14,14 @@ import galleryImg5 from "@assets/WhatsApp Image 2025-09-11 at 16.38.26 (5)_17576
 import galleryImg6 from "@assets/WhatsApp Image 2025-09-11 at 16.38.26 (6)_1757625591249.jpeg";
 import galleryImg7 from "@assets/WhatsApp Image 2025-09-11 at 16.38.26 (7)_1757625591249.jpeg";
 import galleryImg8 from "@assets/WhatsApp Image 2025-09-11 at 16.38.26_1757625591250.jpeg";
+
+// Imagens reais da Garagem 599 - Motos
+import motoImg1 from "@assets/WhatsApp Image 2025-09-11 at 16.38.39_1757627516523.jpeg";
+import motoImg2 from "@assets/WhatsApp Image 2025-09-11 at 16.38.40 (2)_1757627516524.jpeg";
+import motoImg3 from "@assets/WhatsApp Image 2025-09-11 at 16.38.40 (4)_1757627516525.jpeg";
+import motoImg4 from "@assets/WhatsApp Image 2025-09-11 at 16.38.40 (8)_1757627516525.jpeg";
+import motoImg5 from "@assets/WhatsApp Image 2025-09-11 at 16.38.58_1757627516526.jpeg";
+import motoImg6 from "@assets/WhatsApp Image 2025-09-11 at 16.38.39 (3)_1757627516527.jpeg";
 
 export default function GallerySection() {
   const [isUserFocused, setIsUserFocused] = useState(false);
@@ -62,6 +70,7 @@ export default function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const galleryImages = [
+    // Serviços de carros
     {
       src: galleryImg1,
       alt: "Serviço de lavagem e detalhamento - Garagem 599"
@@ -93,6 +102,31 @@ export default function GallerySection() {
     {
       src: galleryImg8,
       alt: "Trabalho completo de estética automotiva"
+    },
+    // Serviços de motos
+    {
+      src: motoImg1,
+      alt: "Lavagem detalhada e cuidados especiais para motos"
+    },
+    {
+      src: motoImg2,
+      alt: "Polimento de carenagem e tanque de moto"
+    },
+    {
+      src: motoImg3,
+      alt: "Limpeza de motor e componentes de moto"
+    },
+    {
+      src: motoImg4,
+      alt: "Enceramento e proteção completa para motos"
+    },
+    {
+      src: motoImg5,
+      alt: "Serviços especializados em motos - Garagem 599"
+    },
+    {
+      src: motoImg6,
+      alt: "Manutenção e estética para motocicletas"
     }
   ];
 

@@ -1,3 +1,9 @@
+// Imagens reais para serviços de moto
+import motoImg1 from "@assets/WhatsApp Image 2025-09-11 at 16.38.39_1757627516523.jpeg";
+import motoImg2 from "@assets/WhatsApp Image 2025-09-11 at 16.38.40 (2)_1757627516524.jpeg";
+import motoImg3 from "@assets/WhatsApp Image 2025-09-11 at 16.38.40 (4)_1757627516525.jpeg";
+import motoImg4 from "@assets/WhatsApp Image 2025-09-11 at 16.38.58_1757627516526.jpeg";
+
 export interface Service {
   id: string;
   name: string;
@@ -153,7 +159,7 @@ export const services: Service[] = [
     description: 'Limpeza completa especializada para motos',
     price: 'R$ 60',
     duration: 1.5,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: motoImg1,
     vehicleType: 'moto',
   },
   {
@@ -162,7 +168,7 @@ export const services: Service[] = [
     description: 'Polimento e proteção de carenagens e tanque',
     price: 'R$ 180',
     duration: 2,
-    image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: motoImg2,
     vehicleType: 'moto',
   },
   {
@@ -171,7 +177,7 @@ export const services: Service[] = [
     description: 'Limpeza especializada do motor da moto',
     price: 'R$ 120',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1558618666-e5dff58bc9a3?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: motoImg3,
     vehicleType: 'moto',
   },
   {
@@ -180,7 +186,7 @@ export const services: Service[] = [
     description: 'Enceramento e proteção completa da moto',
     price: 'R$ 150',
     duration: 2,
-    image: 'https://images.unsplash.com/photo-1558618590-fbd7d1d50c78?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: motoImg4,
     vehicleType: 'moto',
   },
 ];
