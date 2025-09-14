@@ -71,7 +71,7 @@ export const services: Service[] = [
     description: 'Restauração de plásticos externos',
     price: 'R$ 120',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1613963939823-d8cef37a5802?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'both',
   },
   {
@@ -180,7 +180,7 @@ export const services: Service[] = [
     description: 'Enceramento e proteção completa da moto',
     price: 'R$ 150',
     duration: 2,
-    image: 'https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1625743675149-8826ac81ad42?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'moto',
   },
 ];
