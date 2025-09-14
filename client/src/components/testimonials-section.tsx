@@ -1,32 +1,7 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
-import { useState, useEffect } from "react";
-// Novo vídeo para Testimonials
-import videoMotoVideo from "@assets/videomoto_1757120321565.mp4";
 
 export default function TestimonialsSection() {
-  const [isUserFocused, setIsUserFocused] = useState(false);
-  const [hasVideo, setHasVideo] = useState(true);
-
-  // Detecção inteligente de foco
-  useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
-    
-    const handleUserActivity = () => {
-      setIsUserFocused(false);
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => setIsUserFocused(true), 1500);
-    };
-
-    window.addEventListener('scroll', handleUserActivity);
-    document.addEventListener('mousemove', handleUserActivity);
-
-    return () => {
-      window.removeEventListener('scroll', handleUserActivity);
-      document.removeEventListener('mousemove', handleUserActivity);
-      clearTimeout(scrollTimeout);
-    };
-  }, []);
 
   const testimonials = [
     {
@@ -105,40 +80,15 @@ export default function TestimonialsSection() {
 
   return (
     <section className="relative py-10 overflow-hidden">
-      {/* Video Background Inteligente */}
-      {hasVideo && (
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-            isUserFocused ? 'opacity-[0.08]' : 'opacity-30'
-          }`}
-          onError={(e) => {
-            console.error('Erro no vídeo testimonials:', e);
-            setHasVideo(false);
-          }}
-          onCanPlay={() => setHasVideo(true)}
-          data-testid="testimonials-background-video"
-        >
-          <source src={videoMotoVideo} type="video/mp4" />
-        </video>
-      )}
+      {/* Background estático */}
+      <div 
+        className="absolute inset-0 w-full h-full bg-cover bg-center opacity-20"
+        style={{
+          backgroundImage: 'url(https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.1.0&auto=format&fit=crop&w=1920&h=1080)'
+        }}
+      />
       
-      {/* Fallback background when video fails */}
-      {!hasVideo && (
-        <div 
-          className="absolute inset-0 w-full h-full bg-cover bg-center opacity-30"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.1.0&auto=format&fit=crop&w=1920&h=1080)'
-          }}
-        />
-      )}
-      
-      <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-        isUserFocused ? 'bg-secondary/40' : 'bg-secondary/20'
-      }`}></div>
+      <div className="absolute inset-0 bg-secondary/30"></div>
       
       {/* Gradientes de transição suave */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-secondary via-secondary/60 to-transparent z-[5]"></div>
