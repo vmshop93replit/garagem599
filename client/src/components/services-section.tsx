@@ -16,7 +16,7 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
   const [isUserFocused, setIsUserFocused] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(0);
   const [selectedVehicle, setSelectedVehicle] = useState<VehicleType>('car');
-  const [hasVideo, setHasVideo] = useState(false);
+  const [hasVideo, setHasVideo] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   
   // Arrays de vídeos por tipo de veículo
@@ -111,7 +111,7 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
             console.error('Erro no vídeo services:', e);
             setHasVideo(false);
           }}
-          onLoadedData={() => {
+          onCanPlay={() => {
             if (videoRef.current) {
               // Aplicar velocidade correta quando vídeo carrega
               videoRef.current.playbackRate = selectedVehicle === 'moto' ? 0.7 : 1.0;

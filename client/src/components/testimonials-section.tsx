@@ -6,7 +6,7 @@ import videoMotoVideo from "@assets/videomoto_1757120321565.mp4";
 
 export default function TestimonialsSection() {
   const [isUserFocused, setIsUserFocused] = useState(false);
-  const [hasVideo, setHasVideo] = useState(false);
+  const [hasVideo, setHasVideo] = useState(true);
 
   // Detecção inteligente de foco
   useEffect(() => {
@@ -119,7 +119,7 @@ export default function TestimonialsSection() {
             console.error('Erro no vídeo testimonials:', e);
             setHasVideo(false);
           }}
-          onLoadedData={() => setHasVideo(true)}
+          onCanPlay={() => setHasVideo(true)}
           data-testid="testimonials-background-video"
         >
           <source src={videoMotoVideo} type="video/mp4" />

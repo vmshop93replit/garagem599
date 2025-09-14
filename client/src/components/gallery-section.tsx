@@ -8,7 +8,7 @@ import carroRedVideo from "@assets/carrored_1757120321564.mp4";
 export default function GallerySection() {
   const [isUserFocused, setIsUserFocused] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(0);
-  const [hasVideo, setHasVideo] = useState(false);
+  const [hasVideo, setHasVideo] = useState(true);
   
   // Array de vídeos para rotação
   const galleryVideos = useMemo(() => [
@@ -153,7 +153,7 @@ export default function GallerySection() {
             console.error('Erro no vídeo gallery:', e);
             setHasVideo(false);
           }}
-          onLoadedData={() => setHasVideo(true)}
+          onCanPlay={() => setHasVideo(true)}
           data-testid="gallery-background-video"
         >
           <source src={galleryVideos[currentVideo]} type="video/mp4" />

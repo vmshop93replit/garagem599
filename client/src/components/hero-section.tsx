@@ -12,7 +12,7 @@ export default function HeroSection() {
   };
 
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [hasVideo, setHasVideo] = useState(false);
+  const [hasVideo, setHasVideo] = useState(true);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -37,7 +37,7 @@ export default function HeroSection() {
             console.error('Erro no vídeo hero:', e);
             setHasVideo(false);
           }}
-          onLoadedData={() => setHasVideo(true)}
+          onCanPlay={() => setHasVideo(true)}
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
