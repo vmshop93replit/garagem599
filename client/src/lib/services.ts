@@ -26,7 +26,7 @@ export const services: Service[] = [
     description: 'Limpeza externa básica com qualidade',
     price: 'R$ 80',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1632823469850-2f77dd9c7f93?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'both',
   },
   {
@@ -71,7 +71,7 @@ export const services: Service[] = [
     description: 'Restauração de plásticos externos',
     price: 'R$ 120',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1622329821376-a19fd6002562?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'both',
   },
   {
@@ -90,7 +90,7 @@ export const services: Service[] = [
     price: 'R$ 180',
     duration: 1,
     image: 'https://images.unsplash.com/photo-1618329397023-cc688d12bb79?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
-    vehicleType: 'both',
+    vehicleType: 'car',
   },
   {
     id: 'selante-pneus',
@@ -99,7 +99,7 @@ export const services: Service[] = [
     price: 'R$ 60',
     duration: 1,
     image: 'https://images.unsplash.com/photo-1708805282683-50a060eba80f?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
-    vehicleType: 'both',
+    vehicleType: 'car',
   },
   {
     id: 'detalhamento-combo',
@@ -117,7 +117,7 @@ export const services: Service[] = [
     price: 'Sob orçamento',
     duration: 2,
     image: 'https://images.unsplash.com/photo-1592318348310-f31b61a931c8?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
-    vehicleType: 'both',
+    vehicleType: 'car',
   },
   {
     id: 'som-automotivo',
@@ -126,7 +126,7 @@ export const services: Service[] = [
     price: 'Sob orçamento',
     duration: 3,
     image: 'https://images.unsplash.com/photo-1592570714618-15e2d4719c6c?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
-    vehicleType: 'both',
+    vehicleType: 'car',
   },
   {
     id: 'insulfilm-profissional',
@@ -144,7 +144,7 @@ export const services: Service[] = [
     price: 'Sob orçamento',
     duration: 4,
     image: 'https://images.unsplash.com/photo-1565689876697-e467b6c54da2?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
-    vehicleType: 'both',
+    vehicleType: 'car',
   },
   // Serviços específicos para motos
   {
@@ -153,7 +153,7 @@ export const services: Service[] = [
     description: 'Limpeza completa especializada para motos',
     price: 'R$ 60',
     duration: 1.5,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1558618666-e5dff58bc9a3?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'moto',
   },
   {
@@ -162,7 +162,7 @@ export const services: Service[] = [
     description: 'Polimento e proteção de carenagens e tanque',
     price: 'R$ 180',
     duration: 2,
-    image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1558618590-fbd7d1d50c78?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'moto',
   },
   {
@@ -171,7 +171,7 @@ export const services: Service[] = [
     description: 'Limpeza especializada do motor da moto',
     price: 'R$ 120',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1558618666-e5dff58bc9a3?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1625743675149-8826ac81ad42?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'moto',
   },
   {
@@ -180,7 +180,7 @@ export const services: Service[] = [
     description: 'Enceramento e proteção completa da moto',
     price: 'R$ 150',
     duration: 2,
-    image: 'https://images.unsplash.com/photo-1558618590-fbd7d1d50c78?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'moto',
   },
 ];
