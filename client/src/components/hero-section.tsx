@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Calendar, MessageCircle } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import logoImage from "/src/assets/images/logo.png";
-import heroVideo from "/src/assets/videos/hero-video.mp4";
+import heroVideo from "@assets/herovideo_1757060165568.mp4";
 
 export default function HeroSection() {
   const scrollToServices = () => {
@@ -12,6 +12,7 @@ export default function HeroSection() {
   };
 
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [hasVideo, setHasVideo] = useState(false);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -23,21 +24,37 @@ export default function HeroSection() {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Video Background Principal */}
-      <video 
-        ref={videoRef}
-        autoPlay 
-        muted 
-        loop 
-        playsInline 
-        poster="https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
-        className="absolute inset-0 w-full h-full object-cover"
-        onError={(e) => console.error('Erro no vídeo hero:', e)}
-      >
-        <source src={heroVideo} type="video/mp4" />
-      </video>
+      {hasVideo && (
+        <video 
+          ref={videoRef}
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          poster="https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
+          className="absolute inset-0 w-full h-full object-cover"
+          onError={(e) => {
+            console.error('Erro no vídeo hero:', e);
+            setHasVideo(false);
+          }}
+          onLoadedData={() => setHasVideo(true)}
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+      )}
+      
+      {/* Fallback background when video fails */}
+      {!hasVideo && (
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080)'
+          }}
+        />
+      )}
       
       {/* Overlay para mascarar watermark e melhorar contraste */}
-      <div className="absolute inset-0 video-overlay"></div>
+      {hasVideo && <div className="absolute inset-0 video-overlay"></div>}
       
       {/* Watermark solution - Gradiente mais escuro para cobertura total */}
       <div className="absolute bottom-0 left-0 right-0 w-full h-[100px] bg-gradient-to-t from-background via-background/90 to-background/20 z-[5] pointer-events-none"></div>

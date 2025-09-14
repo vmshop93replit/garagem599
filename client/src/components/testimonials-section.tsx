@@ -6,6 +6,7 @@ import videoMotoVideo from "@assets/videomoto_1757120321565.mp4";
 
 export default function TestimonialsSection() {
   const [isUserFocused, setIsUserFocused] = useState(false);
+  const [hasVideo, setHasVideo] = useState(false);
 
   // Detecção inteligente de foco
   useEffect(() => {
@@ -105,19 +106,35 @@ export default function TestimonialsSection() {
   return (
     <section className="relative py-10 overflow-hidden">
       {/* Video Background Inteligente */}
-      <video 
-        autoPlay 
-        muted 
-        loop 
-        playsInline 
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-          isUserFocused ? 'opacity-[0.08]' : 'opacity-30'
-        }`}
-        onError={(e) => console.error('Erro no vídeo testimonials:', e)}
-        data-testid="testimonials-background-video"
-      >
-        <source src={videoMotoVideo} type="video/mp4" />
-      </video>
+      {hasVideo && (
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+            isUserFocused ? 'opacity-[0.08]' : 'opacity-30'
+          }`}
+          onError={(e) => {
+            console.error('Erro no vídeo testimonials:', e);
+            setHasVideo(false);
+          }}
+          onLoadedData={() => setHasVideo(true)}
+          data-testid="testimonials-background-video"
+        >
+          <source src={videoMotoVideo} type="video/mp4" />
+        </video>
+      )}
+      
+      {/* Fallback background when video fails */}
+      {!hasVideo && (
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center opacity-30"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.1.0&auto=format&fit=crop&w=1920&h=1080)'
+          }}
+        />
+      )}
       
       <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
         isUserFocused ? 'bg-secondary/40' : 'bg-secondary/20'

@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
 // Novos vídeos para Gallery
-import bmwVideo from "/src/assets/videos/bmw-video.mp4";
-import carro3Video from "/src/assets/videos/carro3-video.mp4";
-import carroRedVideo from "/src/assets/videos/carrored-video.mp4";
+import bmwVideo from "@assets/bmw_1757120321561.mp4";
+import carro3Video from "@assets/carro3_1757120321564.mp4";
+import carroRedVideo from "@assets/carrored_1757120321564.mp4";
 
 export default function GallerySection() {
   const [isUserFocused, setIsUserFocused] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(0);
+  const [hasVideo, setHasVideo] = useState(false);
   
   // Array de vídeos para rotação
   const galleryVideos = useMemo(() => [
@@ -138,20 +139,36 @@ export default function GallerySection() {
     <section id="galeria" className="relative py-10 overflow-hidden">
       {/* Video Background Responsivo */}
       {/* Video de fundo simplificado */}
-      <video 
-        key={currentVideo}
-        autoPlay 
-        muted 
-        loop 
-        playsInline 
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${
-          isUserFocused ? 'opacity-10' : 'opacity-25'
-        }`}
-        onError={(e) => console.error('Erro no vídeo gallery:', e)}
-        data-testid="gallery-background-video"
-      >
-        <source src={galleryVideos[currentVideo]} type="video/mp4" />
-      </video>
+      {hasVideo && (
+        <video 
+          key={currentVideo}
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${
+            isUserFocused ? 'opacity-10' : 'opacity-25'
+          }`}
+          onError={(e) => {
+            console.error('Erro no vídeo gallery:', e);
+            setHasVideo(false);
+          }}
+          onLoadedData={() => setHasVideo(true)}
+          data-testid="gallery-background-video"
+        >
+          <source src={galleryVideos[currentVideo]} type="video/mp4" />
+        </video>
+      )}
+      
+      {/* Fallback background when video fails */}
+      {!hasVideo && (
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center opacity-25"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1594070319944-7c0cbebb6f58?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080)'
+          }}
+        />
+      )}
       
       <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
         isUserFocused ? 'bg-background/90' : 'bg-background/75'

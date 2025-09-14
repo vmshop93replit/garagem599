@@ -16,6 +16,7 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
   const [isUserFocused, setIsUserFocused] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(0);
   const [selectedVehicle, setSelectedVehicle] = useState<VehicleType>('car');
+  const [hasVideo, setHasVideo] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   
   // Arrays de vídeos por tipo de veículo
@@ -94,28 +95,44 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
   return (
     <section id="servicos" className="relative py-12 overflow-hidden">
       {/* Video Background Dinâmico - responde ao tipo de veículo */}
-      <video 
-        ref={videoRef}
-        key={`${selectedVehicle}-${currentVideo}`}
-        autoPlay 
-        muted 
-        loop 
-        playsInline 
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${
-          isUserFocused ? 'opacity-[0.15]' : 'opacity-25'
-        }`}
-        style={{ filter: selectedVehicle === 'moto' ? 'blur(0.5px)' : 'blur(0px)' }}
-        onError={(e) => console.error('Erro no vídeo services:', e)}
-        onLoadedData={() => {
-          if (videoRef.current) {
-            // Aplicar velocidade correta quando vídeo carrega
-            videoRef.current.playbackRate = selectedVehicle === 'moto' ? 0.7 : 1.0;
-          }
-        }}
-        data-testid="services-background-video"
-      >
-        <source src={servicesVideos[currentVideo]} type="video/mp4" />
-      </video>
+      {hasVideo && (
+        <video 
+          ref={videoRef}
+          key={`${selectedVehicle}-${currentVideo}`}
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${
+            isUserFocused ? 'opacity-[0.15]' : 'opacity-25'
+          }`}
+          style={{ filter: selectedVehicle === 'moto' ? 'blur(0.5px)' : 'blur(0px)' }}
+          onError={(e) => {
+            console.error('Erro no vídeo services:', e);
+            setHasVideo(false);
+          }}
+          onLoadedData={() => {
+            if (videoRef.current) {
+              // Aplicar velocidade correta quando vídeo carrega
+              videoRef.current.playbackRate = selectedVehicle === 'moto' ? 0.7 : 1.0;
+            }
+            setHasVideo(true);
+          }}
+          data-testid="services-background-video"
+        >
+          <source src={servicesVideos[currentVideo]} type="video/mp4" />
+        </video>
+      )}
+      
+      {/* Fallback background when video fails */}
+      {!hasVideo && (
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center opacity-30"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.1.0&auto=format&fit=crop&w=1920&h=1080)'
+          }}
+        />
+      )}
       
       <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
         isUserFocused 
