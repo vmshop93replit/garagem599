@@ -26,7 +26,7 @@ export const services: Service[] = [
     description: 'Limpeza externa básica com qualidade',
     price: 'R$ 80',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1619431856706-ca2cc58258f6?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'both',
   },
   {
@@ -71,7 +71,7 @@ export const services: Service[] = [
     description: 'Restauração de plásticos externos',
     price: 'R$ 120',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1632823470270-a7d3d03c3e20?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'both',
   },
   {
@@ -153,7 +153,7 @@ export const services: Service[] = [
     description: 'Limpeza completa especializada para motos',
     price: 'R$ 60',
     duration: 1.5,
-    image: 'https://images.unsplash.com/photo-1708805282706-f44730b7e527?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'moto',
   },
   {
@@ -162,7 +162,7 @@ export const services: Service[] = [
     description: 'Polimento e proteção de carenagens e tanque',
     price: 'R$ 180',
     duration: 2,
-    image: 'https://images.unsplash.com/photo-1605437241278-c1806d14a4d9?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'moto',
   },
   {
@@ -171,7 +171,7 @@ export const services: Service[] = [
     description: 'Limpeza especializada do motor da moto',
     price: 'R$ 120',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1620584898989-d39f7f9ed1b7?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1607100837775-7c709b7fa95b?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'moto',
   },
   {
@@ -180,7 +180,7 @@ export const services: Service[] = [
     description: 'Enceramento e proteção completa da moto',
     price: 'R$ 150',
     duration: 2,
-    image: 'https://images.unsplash.com/photo-1632823469850-2f77dd9c7f93?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1625743675149-8826ac81ad42?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'moto',
   },
 ];
