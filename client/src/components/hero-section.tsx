@@ -12,49 +12,75 @@ export default function HeroSection() {
   };
 
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [hasVideo, setHasVideo] = useState(true);
+  const [hasVideo, setHasVideo] = useState(false);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.play().catch(console.error);
+    // Safety timeout: if video doesn't load within 3 seconds, use fallback
+    const timeout = setTimeout(() => {
+      if (videoRef.current && videoRef.current.readyState < 2) {
+        setHasVideo(false);
+      }
+    }, 3000);
+
+    // Check for reduced motion preference
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setHasVideo(false);
     }
+
+    return () => clearTimeout(timeout);
   }, []);
+
+  const handleVideoCanPlay = () => {
+    if (videoRef.current) {
+      videoRef.current.play().then(() => {
+        setHasVideo(true);
+      }).catch(() => {
+        setHasVideo(false);
+      });
+    }
+  };
+
+  const handleVideoError = () => {
+    setHasVideo(false);
+  };
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Video Background Principal */}
-      {hasVideo && (
-        <video 
-          ref={videoRef}
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          poster="https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
-          className="absolute inset-0 w-full h-full object-cover"
-          onError={(e) => {
-            console.error('Erro no vídeo hero:', e);
-            setHasVideo(false);
-          }}
-          onCanPlay={() => setHasVideo(true)}
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
-      )}
+      <video 
+        ref={videoRef}
+        autoPlay 
+        muted 
+        loop 
+        playsInline 
+        preload="metadata"
+        poster="https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+          hasVideo ? 'opacity-100' : 'opacity-0'
+        }`}
+        onCanPlay={handleVideoCanPlay}
+        onPlaying={() => setHasVideo(true)}
+        onError={handleVideoError}
+        onAbort={handleVideoError}
+        onStalled={handleVideoError}
+        onEmptied={handleVideoError}
+        style={{ display: hasVideo ? 'block' : 'none' }}
+      >
+        <source src={heroVideo} type="video/mp4" />
+      </video>
       
-      {/* Fallback background when video fails */}
-      {!hasVideo && (
-        <div 
-          className="absolute inset-0 w-full h-full bg-cover bg-center"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080)'
-          }}
-        />
-      )}
+      {/* Fallback background - always present, shown when video fails */}
+      <div 
+        className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-500 ${
+          hasVideo ? 'opacity-0' : 'opacity-100'
+        }`}
+        style={{
+          backgroundImage: 'url(https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080)'
+        }}
+      />
       
       {/* Overlay para mascarar watermark e melhorar contraste */}
-      {hasVideo && <div className="absolute inset-0 video-overlay"></div>}
+      <div className="absolute inset-0 bg-black/20 z-[1]"></div>
       
       {/* Watermark solution - Gradiente mais escuro para cobertura total */}
       <div className="absolute bottom-0 left-0 right-0 w-full h-[100px] bg-gradient-to-t from-background via-background/90 to-background/20 z-[5] pointer-events-none"></div>
