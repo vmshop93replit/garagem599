@@ -1,14 +1,38 @@
 import { motion } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 // Novos vídeos para Gallery
 import bmwVideo from "@assets/bmw_1757120321561.mp4";
 import carro3Video from "@assets/carro3_1757120321564.mp4";
 import carroRedVideo from "@assets/carrored_1757120321564.mp4";
 
+// Novas imagens da galeria
+import img1 from "@assets/1_1758081483597.jpeg";
+import img2 from "@assets/2_1758081483597.jpeg";
+import img3 from "@assets/3_1758081483598.jpeg";
+import img4 from "@assets/4_1758081483598.jpeg";
+import img5 from "@assets/5_1758081483598.jpeg";
+import img6 from "@assets/6_1758081483599.jpeg";
+import img7 from "@assets/7_1758081483599.jpeg";
+import img8 from "@assets/8_1758081483599.jpeg";
+import img10 from "@assets/10_1758081483600.jpeg";
+import img11 from "@assets/11_1758081483600.jpeg";
+import img12 from "@assets/12_1758081483601.jpeg";
+import img13 from "@assets/13_1758081483601.jpeg";
+import img15 from "@assets/15_1758081483601.jpeg";
+import img16 from "@assets/16_1758081483602.jpeg";
+import img17 from "@assets/17_1758081483602.jpeg";
+import img18 from "@assets/18_1758081483591.jpeg";
+import img19 from "@assets/19_1758081483595.jpeg";
+import img20 from "@assets/20_1758081483596.jpeg";
+import img21 from "@assets/21_1758081483596.jpeg";
+import img22 from "@assets/22_1758081483597.jpeg";
+
 export default function GallerySection() {
   const [isUserFocused, setIsUserFocused] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(0);
   const [hasVideo, setHasVideo] = useState(true);
+  const [currentSection, setCurrentSection] = useState(0);
   
   // Array de vídeos para rotação
   const galleryVideos = useMemo(() => [
@@ -53,86 +77,26 @@ export default function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const galleryImages = [
-    {
-      src: "https://images.unsplash.com/photo-1594070319944-7c0cbebb6f58?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Honda Civic preto bem conservado"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1636915873177-a0c1a48d84eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Honda Civic vermelho esportivo"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1570303278489-041bd897a873?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Honda vermelho bem cuidado"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1654870645915-de8afa6b3b30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Carro azul estacionado na rua"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1631547891859-184677884115?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Carro branco lateral na estrada"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Ford Explorer branco estacionado"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1567788701545-850832a506b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Ford preto em paisagem urbana"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1719488677248-552c4ad0a93e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Carro azul estacionamento"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1652509328308-7f0d7804e678?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Toyota prata bem conservado"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1657872737697-737a2d123ef2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Carro prata na lateral da estrada"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1652509328300-9578821756c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Toyota branco sobre tijolos"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1638618164682-12b986ec2a75?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Carro branco lateral estrada"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1547245324-d777c6f05e80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Toyota branco estacionado"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1623591457247-9dff667eae42?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Carro preto com luzes urbanas"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1606577924006-27d39b132ae2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Honda engine bay bem cuidado"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1696219733117-343bb58ffd32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Carro porta-malas aberto"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1575844611398-2a68400b437c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Ford Mustang branco clássico"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1611566026373-c6c8da0ea861?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "BMW azul em estrada"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1620882801951-a7b1521d1dc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "BMW M3 branco na calçada"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1621993202323-f438eec934ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      alt: "Mercedes G63 preto"
-    }
+    { src: img1, alt: "Veículo atendido na Garagem 599" },
+    { src: img2, alt: "Serviço de detalhamento automotivo" },
+    { src: img3, alt: "Carro após limpeza técnica" },
+    { src: img4, alt: "Veículo com vitrificação aplicada" },
+    { src: img5, alt: "Resultado do polimento técnico" },
+    { src: img6, alt: "Higienização completa realizada" },
+    { src: img7, alt: "Veículo após enceramento" },
+    { src: img8, alt: "Serviço de estética automotiva" },
+    { src: img10, alt: "Trabalho de revitalização" },
+    { src: img11, alt: "Veículo com acabamento premium" },
+    { src: img12, alt: "Resultado da limpeza detalhada" },
+    { src: img13, alt: "Carro tratado na Garagem 599" },
+    { src: img15, alt: "Serviço profissional de limpeza" },
+    { src: img16, alt: "Veículo após tratamento completo" },
+    { src: img17, alt: "Trabalho de polimento profissional" },
+    { src: img18, alt: "Resultado da vitrificação" },
+    { src: img19, alt: "Veículo com proteqção aplicada" },
+    { src: img20, alt: "Serviço de estética premium" },
+    { src: img21, alt: "Carro finalizado na Garagem 599" },
+    { src: img22, alt: "Resultado do detalhamento" }
   ];
 
   return (
