@@ -2,6 +2,8 @@
 import polimentoCarenagemMoto from "@assets/polimentocarenagemmoto_1758084137803.jpg";
 import lavaMotorMoto from "@assets/lavamotormoto_1758084137802.jpg";
 import enceramentoMoto from "@assets/enceramentomoto_1758084137803.jpg";
+import lavagemSimplesMoto from "@assets/lavagem de moto_1758088275200.jpeg";
+import lavagemDetalhadaMoto from "@assets/18_1758088287690.jpeg";
 
 export interface Service {
   id: string;
@@ -31,7 +33,7 @@ export const services: Service[] = [
     description: 'Limpeza externa básica com qualidade',
     price: 'R$ 80',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: lavagemSimplesMoto,
     vehicleType: 'both',
   },
   {
@@ -158,7 +160,7 @@ export const services: Service[] = [
     description: 'Limpeza completa especializada para motos',
     price: 'R$ 60',
     duration: 1.5,
-    image: 'https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: lavagemDetalhadaMoto,
     vehicleType: 'moto',
   },
   {
