@@ -1,3 +1,8 @@
+// Imports das imagens dos serviços de moto
+import polimentoCarenagemMoto from "@assets/polimentocarenagemmoto_1758084137803.jpg";
+import lavaMotorMoto from "@assets/lavamotormoto_1758084137802.jpg";
+import enceramentoMoto from "@assets/enceramentomoto_1758084137803.jpg";
+
 export interface Service {
   id: string;
   name: string;
@@ -162,7 +167,7 @@ export const services: Service[] = [
     description: 'Polimento e proteção de carenagens e tanque',
     price: 'R$ 180',
     duration: 2,
-    image: '@assets/polimentocarenagemmoto_1758084137803.jpg',
+    image: polimentoCarenagemMoto,
     vehicleType: 'moto',
   },
   {
@@ -171,7 +176,7 @@ export const services: Service[] = [
     description: 'Limpeza especializada do motor da moto',
     price: 'R$ 120',
     duration: 1,
-    image: '@assets/lavamotormoto_1758084137802.jpg',
+    image: lavaMotorMoto,
     vehicleType: 'moto',
   },
   {
@@ -180,7 +185,7 @@ export const services: Service[] = [
     description: 'Enceramento e proteção completa da moto',
     price: 'R$ 150',
     duration: 2,
-    image: '@assets/enceramentomoto_1758084137803.jpg',
+    image: enceramentoMoto,
     vehicleType: 'moto',
   },
 ];
