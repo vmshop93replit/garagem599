@@ -71,7 +71,7 @@ export const services: Service[] = [
     description: 'Restauração de plásticos externos',
     price: 'R$ 120',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: 'https://images.unsplash.com/photo-1615906655593-ad0386982a0f?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
     vehicleType: 'both',
   },
   {
@@ -162,7 +162,7 @@ export const services: Service[] = [
     description: 'Polimento e proteção de carenagens e tanque',
     price: 'R$ 180',
     duration: 2,
-    image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: '@assets/polimentocarenagemmoto_1758082147987.jpg',
     vehicleType: 'moto',
   },
   {
@@ -171,7 +171,7 @@ export const services: Service[] = [
     description: 'Limpeza especializada do motor da moto',
     price: 'R$ 120',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1607100837775-7c709b7fa95b?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: '@assets/lavamotormoto_1758082147979.jpg',
     vehicleType: 'moto',
   },
   {
@@ -180,7 +180,7 @@ export const services: Service[] = [
     description: 'Enceramento e proteção completa da moto',
     price: 'R$ 150',
     duration: 2,
-    image: 'https://images.unsplash.com/photo-1625743675149-8826ac81ad42?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: '@assets/enceramentomoto_1758082147977.jpg',
     vehicleType: 'moto',
   },
 ];
