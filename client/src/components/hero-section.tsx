@@ -13,6 +13,7 @@ export default function HeroSection() {
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasVideo, setHasVideo] = useState(false);
+  const [isLooping, setIsLooping] = useState(false);
 
   useEffect(() => {
     // Safety timeout: if video doesn't load within 3 seconds, use fallback
@@ -29,6 +30,30 @@ export default function HeroSection() {
 
     return () => clearTimeout(timeout);
   }, []);
+
+  // Gerenciar o listener do timeupdate para smooth loop
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !hasVideo) return;
+
+    const handleTimeUpdate = () => {
+      const duration = video.duration;
+      const currentTime = video.currentTime;
+      
+      // Otimizar setState apenas quando necessário
+      setIsLooping(prev => {
+        const shouldLoop = currentTime >= duration - 0.5;
+        const shouldNotLoop = currentTime <= 0.5;
+        
+        if (prev && shouldNotLoop) return false;
+        if (!prev && shouldLoop) return true;
+        return prev;
+      });
+    };
+
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    return () => video.removeEventListener('timeupdate', handleTimeUpdate);
+  }, [hasVideo]);
 
   const handleVideoCanPlay = () => {
     if (videoRef.current) {
@@ -55,8 +80,8 @@ export default function HeroSection() {
         playsInline 
         preload="metadata"
         poster="https://images.unsplash.com/photo-1632823469387-7cc2f4f76d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-          hasVideo ? 'opacity-100' : 'opacity-0'
+        className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
+          hasVideo ? (isLooping ? 'opacity-95' : 'opacity-100') : 'opacity-0'
         }`}
         onCanPlay={handleVideoCanPlay}
         onPlaying={() => setHasVideo(true)}
@@ -64,7 +89,10 @@ export default function HeroSection() {
         onAbort={handleVideoError}
         onStalled={handleVideoError}
         onEmptied={handleVideoError}
-        style={{ display: hasVideo ? 'block' : 'none' }}
+        style={{ 
+          display: hasVideo ? 'block' : 'none',
+          filter: isLooping ? 'brightness(0.95)' : 'brightness(1)'
+        }}
       >
         <source src={heroVideo} type="video/mp4" />
       </video>
@@ -82,8 +110,8 @@ export default function HeroSection() {
       {/* Overlay para mascarar watermark e melhorar contraste */}
       <div className="absolute inset-0 bg-black/20 z-[1]"></div>
       
-      {/* Watermark solution - Gradiente mais escuro para cobertura total */}
-      <div className="absolute bottom-0 left-0 right-0 w-full h-[100px] bg-gradient-to-t from-background via-background/90 to-background/20 z-[5] pointer-events-none"></div>
+      {/* Watermark solution - Gradiente de 80px para cobrir marca d'água da IA */}
+      <div className="absolute bottom-0 left-0 right-0 w-full h-[80px] bg-gradient-to-t from-background via-background/95 to-transparent z-[5] pointer-events-none"></div>
       
       <motion.div 
         className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
