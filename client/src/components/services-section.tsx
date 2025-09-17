@@ -16,7 +16,7 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
   const [isUserFocused, setIsUserFocused] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(0);
   const [selectedVehicle, setSelectedVehicle] = useState<VehicleType>('car');
-  const [hasVideo, setHasVideo] = useState(true);
+  const [hasVideo, setHasVideo] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   
   // Arrays de vídeos por tipo de veículo
@@ -74,12 +74,37 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
     setCurrentVideo(0);
   }, [selectedVehicle]);
 
-  // Controle de velocidade baseado no tipo de veículo
+  // Safety timeout and reduced motion check
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = selectedVehicle === 'moto' ? 0.7 : 1.0;
+    const timeout = setTimeout(() => {
+      if (videoRef.current && videoRef.current.readyState < 2) {
+        setHasVideo(false);
+      }
+    }, 3000);
+
+    // Check for reduced motion preference
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setHasVideo(false);
     }
+
+    return () => clearTimeout(timeout);
   }, [selectedVehicle, currentVideo]);
+
+  const handleVideoCanPlay = () => {
+    if (videoRef.current) {
+      const playbackRate = selectedVehicle === 'moto' ? 0.7 : 1.0;
+      videoRef.current.playbackRate = playbackRate;
+      videoRef.current.play().then(() => {
+        setHasVideo(true);
+      }).catch(() => {
+        setHasVideo(false);
+      });
+    }
+  };
+
+  const handleVideoError = () => {
+    setHasVideo(false);
+  };
   
   // Sistema de rotação automática de vídeos - simplificado
   useEffect(() => {
@@ -95,44 +120,43 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
   return (
     <section id="servicos" className="relative py-12 overflow-hidden">
       {/* Video Background Dinâmico - responde ao tipo de veículo */}
-      {hasVideo && (
-        <video 
-          ref={videoRef}
-          key={`${selectedVehicle}-${currentVideo}`}
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${
-            isUserFocused ? 'opacity-[0.15]' : 'opacity-25'
-          }`}
-          style={{ filter: selectedVehicle === 'moto' ? 'blur(0.5px)' : 'blur(0px)' }}
-          onError={(e) => {
-            console.error('Erro no vídeo services:', e);
-            setHasVideo(false);
-          }}
-          onCanPlay={() => {
-            if (videoRef.current) {
-              // Aplicar velocidade correta quando vídeo carrega
-              videoRef.current.playbackRate = selectedVehicle === 'moto' ? 0.7 : 1.0;
-            }
-            setHasVideo(true);
-          }}
-          data-testid="services-background-video"
-        >
-          <source src={servicesVideos[currentVideo]} type="video/mp4" />
-        </video>
-      )}
+      <video 
+        ref={videoRef}
+        key={`${selectedVehicle}-${currentVideo}`}
+        autoPlay 
+        muted 
+        loop 
+        playsInline 
+        preload="metadata"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${
+          hasVideo ? (isUserFocused ? 'opacity-[0.15]' : 'opacity-25') : 'opacity-0'
+        }`}
+        style={{ 
+          filter: selectedVehicle === 'moto' ? 'blur(0.5px)' : 'blur(0px)',
+          display: hasVideo ? 'block' : 'none'
+        }}
+        onCanPlay={handleVideoCanPlay}
+        onPlaying={() => setHasVideo(true)}
+        onError={handleVideoError}
+        onAbort={handleVideoError}
+        onStalled={handleVideoError}
+        onEmptied={handleVideoError}
+        data-testid="services-background-video"
+      >
+        <source src={servicesVideos[currentVideo]} type="video/mp4" />
+      </video>
       
-      {/* Fallback background when video fails */}
-      {!hasVideo && (
-        <div 
-          className="absolute inset-0 w-full h-full bg-cover bg-center opacity-30"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.1.0&auto=format&fit=crop&w=1920&h=1080)'
-          }}
-        />
-      )}
+      {/* Fallback background - always present, shown when video fails */}
+      <div 
+        className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-500 ${
+          hasVideo ? 'opacity-0' : 'opacity-30'
+        }`}
+        style={{
+          backgroundImage: selectedVehicle === 'moto' 
+            ? 'url(https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-4.1.0&auto=format&fit=crop&w=1920&h=1080)'
+            : 'url(https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.1.0&auto=format&fit=crop&w=1920&h=1080)'
+        }}
+      />
       
       <div className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
         isUserFocused 
