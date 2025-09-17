@@ -162,7 +162,7 @@ export const services: Service[] = [
     description: 'Polimento e proteção de carenagens e tanque',
     price: 'R$ 180',
     duration: 2,
-    image: '@assets/polimentocarenagemmoto_1758082794257.jpg',
+    image: '@assets/polimentocarenagemmoto_1758084137803.jpg',
     vehicleType: 'moto',
   },
   {
@@ -171,7 +171,7 @@ export const services: Service[] = [
     description: 'Limpeza especializada do motor da moto',
     price: 'R$ 120',
     duration: 1,
-    image: '@assets/lavamotormoto_1758082794257.jpg',
+    image: '@assets/lavamotormoto_1758084137802.jpg',
     vehicleType: 'moto',
   },
   {
@@ -180,7 +180,7 @@ export const services: Service[] = [
     description: 'Enceramento e proteção completa da moto',
     price: 'R$ 150',
     duration: 2,
-    image: '@assets/enceramentomoto_1758082794258.jpg',
+    image: '@assets/enceramentomoto_1758084137803.jpg',
     vehicleType: 'moto',
   },
 ];
