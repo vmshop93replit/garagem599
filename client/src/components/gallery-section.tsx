@@ -27,15 +27,11 @@ import img20 from "@assets/20_1758081483596.jpeg";
 import img21 from "@assets/21_1758081483596.jpeg";
 import img22 from "@assets/22_1758081483597.jpeg";
 
-// Novas imagens de serviços de moto
-import enceramentoMoto from "@assets/enceramentomoto_1758082147977.jpg";
-import lavaMotorMoto from "@assets/lavamotormoto_1758082147979.jpg";
-import polimentoCarenagemMoto from "@assets/polimentocarenagemmoto_1758082147987.jpg";
 
 export default function GallerySection() {
   const [isUserFocused, setIsUserFocused] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(0);
-  const [hasVideo, setHasVideo] = useState(true);
+  const [hasVideo, setHasVideo] = useState(false);
   const [currentSection, setCurrentSection] = useState(0);
   
   // Array de vídeos para rotação
@@ -99,36 +95,11 @@ export default function GallerySection() {
     { src: img19, alt: "Veículo com proteção aplicada" },
     { src: img20, alt: "Serviço de estética premium" },
     { src: img21, alt: "Carro finalizado na Garagem 599" },
-    { src: img22, alt: "Resultado do detalhamento" },
-    { src: enceramentoMoto, alt: "Enceramento profissional de motocicleta" },
-    { src: lavaMotorMoto, alt: "Limpeza técnica de motor de moto" },
-    { src: polimentoCarenagemMoto, alt: "Polimento de carenagem de motocicleta" }
+    { src: img22, alt: "Resultado do detalhamento" }
   ];
 
   return (
     <section id="galeria" className="relative py-10 overflow-hidden">
-      {/* Video Background Responsivo */}
-      {/* Video de fundo simplificado */}
-      {hasVideo && (
-        <video 
-          key={currentVideo}
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${
-            isUserFocused ? 'opacity-10' : 'opacity-25'
-          }`}
-          onError={(e) => {
-            console.error('Erro no vídeo gallery:', e);
-            setHasVideo(false);
-          }}
-          onCanPlay={() => setHasVideo(true)}
-          data-testid="gallery-background-video"
-        >
-          <source src={galleryVideos[currentVideo]} type="video/mp4" />
-        </video>
-      )}
       
       {/* Fallback background when video fails */}
       {!hasVideo && (
