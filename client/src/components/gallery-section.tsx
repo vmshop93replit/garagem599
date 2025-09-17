@@ -154,56 +154,103 @@ export default function GallerySection() {
           </h2>
         </motion.div>
 
-        {/* Carrossel Horizontal por Seções */}
+        {/* Galeria com Navegação */}
         <div className="relative">
-          {/* Indicador de scroll */}
-          <div className="flex justify-center mb-4 gap-2">
+          {/* Indicador Mobile */}
+          <div className="md:hidden flex justify-center mb-4 gap-2">
             <span className="text-xs text-muted-foreground bg-secondary/50 px-3 py-1 rounded-full">
               👈 Deslize para ver mais fotos →
             </span>
           </div>
           
-          <div className="overflow-x-auto scrollbar-hide">
-            <div className="flex gap-6 pb-4" style={{ width: `${Math.ceil(galleryImages.length / 4) * 320}px` }}>
-              {Array.from({ length: Math.ceil(galleryImages.length / 4) }).map((_, sectionIndex) => (
-                <div key={sectionIndex} className="flex-shrink-0">
-                  <div className="grid grid-cols-2 gap-3 w-80">
-                    {galleryImages
-                      .slice(sectionIndex * 4, sectionIndex * 4 + 4)
-                      .map((image, imageIndex) => {
-                        const actualIndex = sectionIndex * 4 + imageIndex;
-                        return (
-                          <motion.div
-                            key={actualIndex}
-                            className="cursor-pointer group"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: imageIndex * 0.1 }}
-                            viewport={{ once: true }}
-                            onClick={() => setSelectedImage(actualIndex)}
-                            data-testid={`gallery-image-${actualIndex}`}
-                          >
-                            <img
-                              src={image.src}
-                              alt={image.alt}
-                              className="w-full h-24 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105"
-                              loading={actualIndex < 4 ? "eager" : "lazy"}
-                            />
-                            <p className="text-center text-xs text-muted-foreground mt-1 group-hover:text-primary transition-colors truncate">
-                              {image.alt}
-                            </p>
-                          </motion.div>
-                        );
-                      })}
-                  </div>
-                </div>
-              ))}
-            </div>
+          {/* Botões de Navegação Desktop */}
+          <div className="hidden md:flex justify-center items-center gap-4 mb-6">
+            <button
+              onClick={() => setCurrentSection(Math.max(0, currentSection - 1))}
+              disabled={currentSection === 0}
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/80 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105"
+              data-testid="gallery-prev-button"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            
+            <span className="text-sm text-muted-foreground px-4 py-2 bg-secondary/50 rounded-full">
+              Seção {currentSection + 1} de {Math.ceil(galleryImages.length / 4)}
+            </span>
+            
+            <button
+              onClick={() => setCurrentSection(Math.min(Math.ceil(galleryImages.length / 4) - 1, currentSection + 1))}
+              disabled={currentSection >= Math.ceil(galleryImages.length / 4) - 1}
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/80 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105"
+              data-testid="gallery-next-button"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
           </div>
           
-          {/* Indicador de mais conteúdo */}
-          <div className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gradient-to-l from-background via-background/80 to-transparent w-16 h-full flex items-center justify-end pr-2">
-            <span className="text-primary text-lg animate-pulse">→</span>
+          {/* Container da Galeria */}
+          <div className="relative overflow-hidden">
+            {/* Desktop: Exibe seção atual */}
+            <div className="hidden md:block">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                {galleryImages
+                  .slice(currentSection * 4, currentSection * 4 + 4)
+                  .map((image, imageIndex) => {
+                    const actualIndex = currentSection * 4 + imageIndex;
+                    return (
+                      <motion.div
+                        key={actualIndex}
+                        className="cursor-pointer group"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.6, delay: imageIndex * 0.1 }}
+                        onClick={() => setSelectedImage(actualIndex)}
+                        data-testid={`gallery-image-${actualIndex}`}
+                      >
+                        <img
+                          src={image.src}
+                          alt={image.alt}
+                          className="w-full h-32 lg:h-40 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105"
+                          loading={actualIndex < 4 ? "eager" : "lazy"}
+                        />
+                        <p className="text-center text-xs text-muted-foreground mt-2 group-hover:text-primary transition-colors truncate">
+                          {image.alt}
+                        </p>
+                      </motion.div>
+                    );
+                  })}
+              </div>
+            </div>
+            
+            {/* Mobile: Carrossel horizontal */}
+            <div className="md:hidden">
+              <div className="overflow-x-auto scrollbar-hide">
+                <div className="flex gap-4 pb-4" style={{ width: `${galleryImages.length * 180 + (galleryImages.length - 1) * 16}px` }}>
+                  {galleryImages.map((image, index) => (
+                    <motion.div
+                      key={index}
+                      className="cursor-pointer group flex-shrink-0"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.6, delay: index * 0.05 }}
+                      viewport={{ once: true }}
+                      onClick={() => setSelectedImage(index)}
+                      data-testid={`gallery-image-mobile-${index}`}
+                    >
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-40 h-28 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105"
+                        loading={index < 4 ? "eager" : "lazy"}
+                      />
+                      <p className="text-center text-xs text-muted-foreground mt-1 group-hover:text-primary transition-colors truncate w-40">
+                        {image.alt}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
