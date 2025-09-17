@@ -7,7 +7,6 @@ import carro3Video from "@assets/carro3_1757120321564.mp4";
 import carroRedVideo from "@assets/carrored_1757120321564.mp4";
 
 // Novas imagens da galeria
-import img1 from "@assets/1_1758081483597.jpeg";
 import img2 from "@assets/2_1758081483597.jpeg";
 import img3 from "@assets/3_1758081483598.jpeg";
 import img4 from "@assets/4_1758081483598.jpeg";
@@ -27,6 +26,11 @@ import img19 from "@assets/19_1758081483595.jpeg";
 import img20 from "@assets/20_1758081483596.jpeg";
 import img21 from "@assets/21_1758081483596.jpeg";
 import img22 from "@assets/22_1758081483597.jpeg";
+
+// Novas imagens de serviços de moto
+import enceramentoMoto from "@assets/enceramentomoto_1758082147977.jpg";
+import lavaMotorMoto from "@assets/lavamotormoto_1758082147979.jpg";
+import polimentoCarenagemMoto from "@assets/polimentocarenagemmoto_1758082147987.jpg";
 
 export default function GallerySection() {
   const [isUserFocused, setIsUserFocused] = useState(false);
@@ -77,7 +81,6 @@ export default function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const galleryImages = [
-    { src: img1, alt: "Veículo atendido na Garagem 599" },
     { src: img2, alt: "Serviço de detalhamento automotivo" },
     { src: img3, alt: "Carro após limpeza técnica" },
     { src: img4, alt: "Veículo com vitrificação aplicada" },
@@ -93,10 +96,13 @@ export default function GallerySection() {
     { src: img16, alt: "Veículo após tratamento completo" },
     { src: img17, alt: "Trabalho de polimento profissional" },
     { src: img18, alt: "Resultado da vitrificação" },
-    { src: img19, alt: "Veículo com proteqção aplicada" },
+    { src: img19, alt: "Veículo com proteção aplicada" },
     { src: img20, alt: "Serviço de estética premium" },
     { src: img21, alt: "Carro finalizado na Garagem 599" },
-    { src: img22, alt: "Resultado do detalhamento" }
+    { src: img22, alt: "Resultado do detalhamento" },
+    { src: enceramentoMoto, alt: "Enceramento profissional de motocicleta" },
+    { src: lavaMotorMoto, alt: "Limpeza técnica de motor de moto" },
+    { src: polimentoCarenagemMoto, alt: "Polimento de carenagem de motocicleta" }
   ];
 
   return (
