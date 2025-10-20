@@ -1,5 +1,5 @@
 // Version checking and auto-reload functionality
-export const APP_VERSION = '1.0.0';
+export const APP_VERSION = '1.0.1';
 
 // Check for new version every 5 minutes
 const CHECK_INTERVAL = 5 * 60 * 1000;

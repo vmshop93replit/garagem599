@@ -5,6 +5,10 @@ import enceramentoMoto from "@assets/enceramentomoto_1758084137803.jpg";
 import lavagemSimplesMoto from "@assets/lavagem de moto_1758088275200.jpeg";
 import lavagemDetalhadaMoto from "@assets/18_1758088287690.jpeg";
 
+// Imports das novas imagens dos serviços
+import filtroDeAr from "@assets/fitlrodear_1760997197793.webp";
+import autoEletrica from "@assets/autoeletrica_1760997197795.jpg";
+
 export interface Service {
   id: string;
   name: string;
@@ -128,15 +132,6 @@ export const services: Service[] = [
     vehicleType: 'car',
   },
   {
-    id: 'troca-filtro-ar-condicionado',
-    name: 'Troca de Filtro de Ar Condicionado',
-    description: 'Substituição do filtro e higienização do ar interno',
-    price: 'A partir de R$ 60',
-    duration: 1,
-    image: 'https://images.unsplash.com/photo-1632823470270-a7d3d03c3e20?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
-    vehicleType: 'car',
-  },
-  {
     id: 'detalhamento-combo',
     name: 'Serviço de Detalhamento (Combo Proteção)',
     description: 'Pacote completo de limpeza, polimento e vitrificação',
@@ -151,7 +146,7 @@ export const services: Service[] = [
     description: 'Diagnóstico e reparos elétricos automotivos',
     price: 'Sob orçamento',
     duration: 2,
-    image: 'https://images.unsplash.com/photo-1592318348310-f31b61a931c8?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: autoEletrica,
     vehicleType: 'car',
   },
   {
@@ -183,11 +178,11 @@ export const services: Service[] = [
   },
   {
     id: 'troca-filtro-ar',
-    name: 'Troca de Filtro de Ar (Adicional)',
-    description: 'Substituição simples do filtro de ar do motor',
-    price: 'Sob orçamento',
+    name: 'Troca de Filtro de Ar',
+    description: 'Substituição do filtro de ar do motor e ar condicionado',
+    price: 'A partir de R$ 60',
     duration: 1,
-    image: 'https://images.unsplash.com/photo-1592318348310-f31b61a931c8?ixlib=rb-4.1.0&auto=format&fit=crop&w=400&h=250',
+    image: filtroDeAr,
     vehicleType: 'car',
   },
   // Serviços específicos para motos

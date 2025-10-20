@@ -1,46 +1,77 @@
 # 🚀 Passos para Deploy - Garagem 599
 
-## ✅ Arquivos Criados/Modificados
+## ✅ Mudanças Nesta Versão (v1.0.1)
 
-### Arquivos Novos:
-1. ✅ `public/service-worker.js` - Service Worker para controle de cache
-2. ✅ `public/version.json` - Arquivo de versão para verificação
-3. ✅ `client/src/lib/version-check.ts` - Lógica de atualização automática
-4. ✅ `UPDATE_GUIDE.md` - Guia completo do sistema de cache
-5. ✅ `GIT_DEPLOY_STEPS.md` - Este arquivo
+### Serviços Atualizados:
+1. ✅ **Unificado serviço de Filtro** - Agora só existe "Troca de Filtro de Ar" que cobre motor e ar condicionado
+2. ✅ **Nova imagem Auto Elétrica** - Imagem profissional com bateria automotiva
+3. ✅ **Nova imagem Filtro de Ar** - Comparação visual de filtros novo vs usado
+4. ✅ **Preço atualizado** - Filtro de Ar agora "A partir de R$ 60" (antes "Sob orçamento")
 
 ### Arquivos Modificados:
-1. ✅ `client/index.html` - Adicionadas meta tags de cache
-2. ✅ `client/src/main.tsx` - Inicialização do sistema de versão
-3. ✅ `client/src/components/booking-modal.tsx` - Novo fluxo em 3 passos com animações
-4. ✅ `client/src/components/services-section.tsx` - Micro-animações nos cards
-5. ✅ `vercel.json` - Headers HTTP de cache configurados
-6. ✅ `DEPLOY.md` - Documentação atualizada com sistema de cache
+- `client/src/lib/services.ts` - Serviços atualizados e imagens novas
+- `public/service-worker.js` - Versão 1.0.1
+- `client/src/lib/version-check.ts` - Versão 1.0.1
+- `public/version.json` - Versão 1.0.1
+- `client/index.html` - Meta tag versão 1.0.1
+
+---
 
 ## 📋 Comandos Git para Deploy
 
-### Passo 1: Adicionar Todos os Arquivos
+### ⚠️ IMPORTANTE: Configuração Inicial do Remote
+
+Se você ainda não configurou o repositório remoto do GitHub, execute primeiro:
+
 ```bash
+# Verifique se o remote está configurado
+git remote -v
+```
+
+**Se não aparecer nada ou estiver errado, configure:**
+
+```bash
+# Adicione o remote correto (substitua com seu usuário/repositório)
+git remote add origin https://github.com/SEU_USUARIO/garagem-599.git
+
+# Ou se já existir mas estiver errado, atualize:
+git remote set-url origin https://github.com/SEU_USUARIO/garagem-599.git
+```
+
+---
+
+## 🔄 Deploy - Passo a Passo
+
+### Opção 1: Primeira Vez (Branch não existe no GitHub)
+
+```bash
+# 1. Adicionar todos os arquivos
 git add .
+
+# 2. Fazer commit
+git commit -m "feat: Atualizar serviços e imagens - v1.0.1
+
+- Unificado serviços de filtro (motor + ar condicionado) com preço R$ 60
+- Nova imagem profissional para Auto Elétrica
+- Nova imagem comparativa para Filtro de Ar
+- Removido serviço duplicado de Filtro de Ar Condicionado
+
+Versão: 1.0.1"
+
+# 3. Push criando a branch no remote
+git push -u origin main
 ```
 
-### Passo 2: Fazer Commit
+### Opção 2: Branch Já Existe no GitHub
+
 ```bash
-git commit -m "feat: Sistema de cache busting + UX melhorado
+# 1. Adicionar todos os arquivos
+git add .
 
-- Implementado sistema duplo de verificação de versão (Service Worker + version.json)
-- Atualização automática sem intervenção do usuário
-- Formulário de booking com 3 passos progressivos e indicadores visuais
-- Micro-animações UX nos cards de serviço (hover, sparkles, call-to-action)
-- Cache inteligente com limpeza automática
-- Headers HTTP otimizados no Vercel
-- Documentação completa (UPDATE_GUIDE.md)
+# 2. Fazer commit
+git commit -m "feat: Atualizar serviços e imagens - v1.0.1"
 
-Versão: 1.0.0"
-```
-
-### Passo 3: Push para GitHub
-```bash
+# 3. Push normal
 git push origin main
 ```
 
@@ -49,127 +80,186 @@ git push origin main
 git push origin master
 ```
 
+---
+
 ## ⚡ Deploy Automático no Vercel
 
 Após fazer o `git push`, o Vercel irá:
 
 1. ✅ Detectar o push automaticamente
 2. ✅ Iniciar o build (`npm run build`)
-3. ✅ Gerar `dist/public/` com todos os arquivos otimizados
+3. ✅ Processar as novas imagens
 4. ✅ Fazer deploy da nova versão
 5. ✅ Site estará atualizado em ~2-3 minutos
 
-### Monitorar o Deploy
+### 📊 Monitorar o Deploy
 
 1. Acesse [vercel.com/dashboard](https://vercel.com/dashboard)
 2. Selecione o projeto "garagem-599"
 3. Veja o status do deploy em tempo real
 4. Quando aparecer "Ready", o site está atualizado!
 
+---
+
 ## 🔍 Verificar se Funcionou
 
-### 1. Abrir o Site
-Acesse seu domínio: `https://seu-dominio.com`
+### 1. Verificar os Serviços Atualizados
+
+Acesse o site e verifique:
+
+✅ **Seção de Serviços para Carros:**
+- Deve aparecer apenas **1 serviço de filtro**: "Troca de Filtro de Ar"
+- **Não deve** mais aparecer "Troca de Filtro de Ar Condicionado" separado
+- Preço deve estar: "A partir de R$ 60"
+- Descrição: "Substituição do filtro de ar do motor e ar condicionado"
+
+✅ **Imagens Novas:**
+- **Auto Elétrica**: Foto com bateria automotiva sendo manuseada
+- **Filtro de Ar**: Comparação visual de filtro sujo vs limpo
 
 ### 2. Verificar Console do Navegador
-Pressione `F12` e vá para Console. Você deve ver:
+
+Pressione `F12` → Console:
 ```
-[Version Check] Service Worker registered: https://seu-dominio.com/
+[Version Check] Service Worker registered
 ```
 
-### 3. Verificar Versão
+### 3. Verificar Versão Atual
+
 No console, digite:
 ```javascript
-checkVersion()
+sessionStorage.getItem('app_version')
 ```
 
-Deve mostrar:
-```
-Current version: 1.0.0
-Update available: false
-```
+Deve retornar: `"1.0.1"`
 
-### 4. Testar Formulário de Booking
-1. Clique em qualquer serviço
-2. Veja o novo fluxo em 3 passos:
-   - 📋 Passo 1: Seus Dados (nome, whatsapp, endereço)
-   - 📅 Passo 2: Data e Hora
-   - ✅ Passo 3: Confirmação (LGPD)
-3. Observe os indicadores de progresso animados
-4. Veja as micro-animações nos cards (hover com brilho, sparkles)
-
-## 🎯 O Que Esperar Após Deploy
-
-### Para Usuários Novos
-- Verão imediatamente a nova versão
-- Formulário com 3 passos
-- Animações suaves nos serviços
-- Sistema de cache funcionando
-
-### Para Usuários Ativos (já estavam no site)
-- Em até 10 minutos (máximo), verão a notificação:
-  - "✨ Nova versão disponível! Atualizando..."
-- Página recarregará automaticamente
-- Verão todas as novas funcionalidades
-
-## 🔄 Próximas Atualizações
-
-Quando fizer mudanças futuras no site:
-
-1. **Atualize a versão** nos 4 arquivos:
-   - `public/service-worker.js` → `CACHE_VERSION = 'v1.0.1'`
-   - `client/src/lib/version-check.ts` → `APP_VERSION = '1.0.1'`
-   - `public/version.json` → `"version": "1.0.1"`
-   - `client/index.html` → `<meta name="app-version" content="1.0.1">`
-
-2. **Faça commit e push:**
-   ```bash
-   git add .
-   git commit -m "feat: [descrição das mudanças] - v1.0.1"
-   git push origin main
-   ```
-
-3. **Aguarde deploy:** Vercel fará deploy automático
-
-4. **Usuários serão atualizados:** Automaticamente em até 10 minutos
-
-## 📞 Troubleshooting
-
-### "Git push não funcionou"
-```bash
-# Verifique se está na branch correta
-git branch
-
-# Verifique remote
-git remote -v
-
-# Se precisar adicionar remote
-git remote add origin https://github.com/SEU_USUARIO/garagem-599.git
-```
-
-### "Vercel não está fazendo deploy"
-1. Verifique se o repositório está conectado ao Vercel
-2. Vá em Settings → Git no dashboard do Vercel
-3. Confirme que o webhook do GitHub está ativo
-
-### "Site não atualiza após deploy"
-1. Limpe o cache do navegador: `Ctrl+Shift+Delete`
-2. Faça hard refresh: `Ctrl+Shift+R` (Windows) ou `Cmd+Shift+R` (Mac)
-3. Aguarde até 10 minutos para atualização automática
-
-## ✅ Checklist Final
-
-Antes de fazer o push, confirme:
-
-- [ ] Todos os arquivos foram salvos
-- [ ] Service worker está em `public/service-worker.js`
-- [ ] Version.json está em `public/version.json`
-- [ ] version-check.ts está em `client/src/lib/version-check.ts`
-- [ ] Meta tags adicionadas no `client/index.html`
-- [ ] Headers configurados no `vercel.json`
-- [ ] Booking modal atualizado com 3 passos
-- [ ] Services section com micro-animações
+**Nota:** Em modo de desenvolvimento, o sistema de verificação de versão fica desabilitado. Você verá isso funcionando apenas em produção (após deploy no Vercel).
 
 ---
 
-**🎉 Tudo pronto para deploy! Execute os comandos git acima e seu site estará atualizado em minutos!**
+## 🎯 O Que Esperar Após Deploy
+
+### Para Novos Visitantes:
+- Verão imediatamente a versão 1.0.1
+- Apenas 1 serviço de filtro (unificado)
+- Novas imagens profissionais
+
+### Para Usuários que Já Estavam no Site:
+- Em até **10 minutos**, verão a notificação:
+  - "✨ Nova versão disponível! Atualizando..."
+- Página recarregará automaticamente
+- Verão todas as mudanças
+
+---
+
+## 🔄 Próximas Atualizações
+
+Quando fizer novas mudanças:
+
+### 1. Atualize a Versão (4 arquivos):
+
+```bash
+# Exemplo: 1.0.1 → 1.0.2
+
+# Arquivo 1: public/service-worker.js
+const CACHE_VERSION = 'v1.0.2';
+
+# Arquivo 2: client/src/lib/version-check.ts
+export const APP_VERSION = '1.0.2';
+
+# Arquivo 3: public/version.json
+{
+  "version": "1.0.2",
+  "lastUpdated": "2025-10-20T20:00:00Z"
+}
+
+# Arquivo 4: client/index.html
+<meta name="app-version" content="1.0.2">
+```
+
+### 2. Commit e Push:
+
+```bash
+git add .
+git commit -m "feat: [descrição] - v1.0.2"
+git push origin main
+```
+
+---
+
+## 📞 Troubleshooting
+
+### ❌ Erro: "UNKNOWN_REF - Remote ref missing"
+
+**Causa:** A branch não existe no GitHub ainda.
+
+**Solução:**
+```bash
+# Use -u para criar a branch no remote
+git push -u origin main
+```
+
+### ❌ Erro: "No remote repository"
+
+**Causa:** Remote do GitHub não configurado.
+
+**Solução:**
+```bash
+# Configure o remote (use seu repositório)
+git remote add origin https://github.com/SEU_USUARIO/garagem-599.git
+
+# Depois faça o push
+git push -u origin main
+```
+
+### ❌ Erro: "Permission denied"
+
+**Causa:** Credenciais do GitHub não configuradas.
+
+**Solução:**
+1. Configure seu GitHub token no Replit
+2. Ou use SSH keys
+3. Ou faça push manualmente via GitHub Desktop
+
+### ⚠️ Site não atualiza após deploy
+
+**Soluções:**
+1. **Hard Refresh:** `Ctrl+Shift+R` (Windows) ou `Cmd+Shift+R` (Mac)
+2. **Limpar Cache:** `Ctrl+Shift+Delete` → Limpar cache
+3. **Aguardar:** Sistema atualiza automaticamente em até 10 minutos
+
+### ⚠️ Vercel não está fazendo deploy
+
+**Verifique:**
+1. Repositório conectado ao Vercel
+2. Settings → Git → Webhook ativo
+3. Logs de deploy no dashboard
+
+---
+
+## ✅ Checklist Pré-Deploy
+
+Antes de fazer o push, confirme:
+
+- [x] Serviço "Filtro de Ar Condicionado" foi removido
+- [x] Serviço "Filtro de Ar" foi atualizado (nome, descrição, preço)
+- [x] Imagem Auto Elétrica atualizada (autoeletrica_1760997197795.jpg)
+- [x] Imagem Filtro de Ar atualizada (fitlrodear_1760997197793.webp)
+- [x] Versão 1.0.1 em todos os 4 arquivos
+- [x] Git remote configurado corretamente
+- [x] Pronto para fazer commit e push
+
+---
+
+## 🎉 Tudo Pronto!
+
+Execute os comandos acima e em **3 minutos** seu site estará atualizado com:
+- ✅ Serviços unificados (sem duplicatas)
+- ✅ Imagens profissionais novas
+- ✅ Preços atualizados
+- ✅ Sistema de cache busting ativo
+
+**Comando rápido para deploy:**
+```bash
+git add . && git commit -m "feat: Atualizar serviços e imagens - v1.0.1" && git push -u origin main
+```
