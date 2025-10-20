@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Clock, Car, Bike } from "lucide-react";
+import { Clock, Car, Bike, Sparkles, ChevronRight } from "lucide-react";
 import { services } from "@/lib/services";
 import type { Service, VehicleType } from "@/lib/services";
 import { useState, useEffect, useMemo, useRef } from "react";
@@ -17,6 +17,7 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
   const [currentVideo, setCurrentVideo] = useState(0);
   const [selectedVehicle, setSelectedVehicle] = useState<VehicleType>('car');
   const [hasVideo, setHasVideo] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   
   // Arrays de vídeos por tipo de veículo
@@ -175,17 +176,27 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-tech font-bold text-foreground mb-4 tracking-wider">
+          <motion.h2
+            className="text-3xl md:text-4xl font-tech font-bold text-foreground mb-4 tracking-wider"
+            animate={{
+              textShadow: [
+                "0 0 20px rgba(59, 130, 246, 0)",
+                "0 0 20px rgba(59, 130, 246, 0.3)",
+                "0 0 20px rgba(59, 130, 246, 0)",
+              ]
+            }}
+            transition={{ duration: 3, repeat: Infinity }}
+          >
             NOSSOS <span className="text-primary">SERVIÇOS</span>
-          </h2>
+          </motion.h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
             Gama completa de serviços especializados para seu veículo
           </p>
           
           {/* Toggle Carro/Moto */}
           <div className="flex justify-center mb-8">
-            <div className="bg-background/20 backdrop-blur-md border border-border/50 rounded-full p-1 flex gap-1">
-              <button
+            <div className="bg-background/20 backdrop-blur-md border border-border/50 rounded-full p-1 flex gap-1 shadow-lg">
+              <motion.button
                 onClick={() => setSelectedVehicle('car')}
                 className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 font-tech font-semibold ${
                   selectedVehicle === 'car'
@@ -193,11 +204,13 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
                     : 'text-muted-foreground hover:text-foreground hover:bg-background/30'
                 }`}
                 data-testid="vehicle-toggle-car"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <Car className="w-5 h-5" />
                 CARROS
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 onClick={() => setSelectedVehicle('moto')}
                 className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 font-tech font-semibold ${
                   selectedVehicle === 'moto'
@@ -205,10 +218,12 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
                     : 'text-muted-foreground hover:text-foreground hover:bg-background/30'
                 }`}
                 data-testid="vehicle-toggle-moto"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <Bike className="w-5 h-5" />
                 MOTOS
-              </button>
+              </motion.button>
             </div>
           </div>
         </motion.div>
@@ -225,36 +240,121 @@ export default function ServicesSection({ onServiceSelect }: ServicesSectionProp
             {filteredServices.map((service, index) => (
               <motion.div
                 key={service.id}
-                className="service-card rounded-xl p-4 cursor-pointer"
+                className="service-card rounded-xl p-4 cursor-pointer group relative overflow-hidden"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0 10px 30px rgba(59, 130, 246, 0.3)",
+                }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => onServiceSelect(service)}
+                onMouseEnter={() => setHoveredCard(service.id)}
+                onMouseLeave={() => setHoveredCard(null)}
                 data-testid={`service-card-${service.id}`}
               >
-                <img
-                  src={service.image}
-                  alt={service.name}
-                  className="w-full h-24 sm:h-32 object-cover rounded-lg mb-2 sm:mb-3"
-                  loading={index < 4 ? "eager" : "lazy"}
-                  data-testid={`service-image-${service.id}`}
+                {/* Animated glow effect on hover */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 pointer-events-none"
+                  initial={{ x: "-100%" }}
+                  animate={{ x: hoveredCard === service.id ? "100%" : "-100%" }}
+                  transition={{ duration: 0.6 }}
                 />
-                <h3 className="text-sm sm:text-base font-tech font-semibold text-foreground mb-1 sm:mb-2 leading-tight">{service.name}</h3>
-                <p className="text-muted-foreground mb-2 sm:mb-3 text-xs leading-tight">{service.description}</p>
-                <div className="flex justify-between items-center">
-                  <span className="text-primary font-semibold" data-testid={`service-price-${service.id}`}>
-                    {service.price}
-                  </span>
-                  <span className="text-accent text-sm flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    {service.duration}h
-                  </span>
+                
+                {/* Sparkle icon on hover */}
+                <motion.div
+                  className="absolute top-2 right-2 z-10"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ 
+                    opacity: hoveredCard === service.id ? 1 : 0,
+                    scale: hoveredCard === service.id ? 1 : 0,
+                    rotate: hoveredCard === service.id ? 360 : 0,
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Sparkles className="w-5 h-5 text-primary" />
+                </motion.div>
+
+                <div className="relative z-10">
+                  <div className="relative overflow-hidden rounded-lg mb-2 sm:mb-3">
+                    <motion.img
+                      src={service.image}
+                      alt={service.name}
+                      className="w-full h-24 sm:h-32 object-cover"
+                      loading={index < 4 ? "eager" : "lazy"}
+                      data-testid={`service-image-${service.id}`}
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    {/* Overlay on hover */}
+                    <motion.div
+                      className="absolute inset-0 bg-primary/20 flex items-center justify-center"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: hoveredCard === service.id ? 1 : 0 }}
+                    >
+                      <ChevronRight className="w-8 h-8 text-white" />
+                    </motion.div>
+                  </div>
+                  
+                  <h3 className="text-sm sm:text-base font-tech font-semibold text-foreground mb-1 sm:mb-2 leading-tight group-hover:text-primary transition-colors">
+                    {service.name}
+                  </h3>
+                  <p className="text-muted-foreground mb-2 sm:mb-3 text-xs leading-tight line-clamp-2">
+                    {service.description}
+                  </p>
+                  
+                  <div className="flex justify-between items-center">
+                    <motion.span
+                      className="text-primary font-bold text-sm sm:text-base"
+                      data-testid={`service-price-${service.id}`}
+                      animate={hoveredCard === service.id ? { scale: [1, 1.1, 1] } : {}}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {service.price}
+                    </motion.span>
+                    <span className="text-accent text-xs sm:text-sm flex items-center gap-1 bg-accent/10 px-2 py-1 rounded-full">
+                      <Clock className="w-3 h-3" />
+                      {service.duration}h
+                    </span>
+                  </div>
+
+                  {/* Call to action hint */}
+                  <motion.div
+                    className="mt-2 text-xs text-primary font-semibold flex items-center gap-1"
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ 
+                      opacity: hoveredCard === service.id ? 1 : 0,
+                      y: hoveredCard === service.id ? 0 : -5,
+                    }}
+                  >
+                    Clique para agendar
+                    <ChevronRight className="w-3 h-3" />
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
+
+        {/* Call to Action after services */}
+        <motion.div
+          className="mt-12 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
+          <motion.p
+            className="text-lg text-muted-foreground mb-4"
+            animate={{
+              opacity: [0.7, 1, 0.7],
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            ✨ Clique em qualquer serviço para agendar agora mesmo! ✨
+          </motion.p>
+        </motion.div>
       </div>
     </section>
   );

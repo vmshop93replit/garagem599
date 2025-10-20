@@ -1,0 +1,50 @@
+🧠 PROMPT DE ATUALIZAÇÃO — GARAGEM 599
+
+Objetivo: atualizar todas as listas e descrições de serviços no aplicativo para refletir os valores, descrições e tempos abaixo. O app deve manter a mesma estrutura de exibição anterior, mas atualizar nomes, preços, descrições e tempo médio. Se houver categorias, elas devem continuar separadas (Carros, Motos, Notas Gerais).
+
+📂 CATEGORIA: SERVIÇOS PARA CARROS
+
+Vitrificação 3 Anos (Hatch) – Proteção premium com durabilidade de 3 anos — R$ 1.200 — 6h
+Vitrificação 3 Anos (Sedan) – Proteção premium com durabilidade de 3 anos — R$ 1.500 — 6h
+Vitrificação 3 Anos (Pick-up) – Proteção premium com durabilidade de 3 anos — R$ 1.800 — 6h
+Lavagem Simples – Limpeza externa básica com secagem completa — R$ 70 — 1h
+Lavagem Técnica – Limpeza detalhada com produtos específicos — R$ 150 — 2h
+Higienização Completa – Limpeza e sanitização interna completa — A partir de R$ 350 — 3h
+Polimento Técnico – Polimento e correção de pintura com proteção — A partir de R$ 300 — 3h
+Descontaminação de Pintura – Remoção de impurezas e resíduos da pintura — A partir de R$ 250 — 2h
+Revitalizador de Plásticos Externos – Restauração e proteção dos plásticos externos — R$ 120 — 1h
+Revitalizador de Plásticos Internos – Restauração e proteção dos plásticos internos — R$ 100 — 1h
+Impermeabilizador de Vidros / Parabrisa – Proteção hidrofóbica que repele água e sujeira — A partir de R$ 150 — 1h
+Selante nos Pneus – Aplicação de selante com brilho e proteção duradoura — A partir de R$ 30 — 1h
+Troca de Filtro de Ar Condicionado – Substituição do filtro e higienização do ar interno — A partir de R$ 60 — 1h
+Serviço de Detalhamento (Combo Proteção) – Pacote completo de limpeza, polimento e vitrificação — R$ 950 — 4h
+Auto Elétrica – Diagnóstico e reparos elétricos automotivos — Sob orçamento — 2h
+Som Automotivo – Instalação e ajustes de som automotivo — Sob orçamento — 3h
+Insulfilm Profissional – Aplicação de película com isolamento térmico — Sob orçamento — 1h30
+Pacotes e Promoções Especiais – Combos personalizados e descontos — Sob orçamento — variável
+Troca de Filtro de Ar (Adicional) – Substituição simples do filtro de ar do motor — Sob orçamento — 1h
+
+📂 CATEGORIA: SERVIÇOS PARA MOTOS
+
+Lavagem Simples – Limpeza externa básica e secagem completa — R$ 40 — 45min
+Lavagem Detalhada – Limpeza completa e minuciosa, incluindo rodas, escapamento e partes cromadas — R$ 60 — 1h15
+Revitalizador de Plásticos Externos – Restauração de plásticos externos com acabamento e proteção UV — R$ 80 — 1h
+Polimento de Carenagem – Polimento e proteção das carenagens, tanque e partes pintadas — R$ 120 — 1h30
+Limpeza de Motor Moto – Limpeza técnica do motor com produtos específicos e isolamento elétrico — R$ 80 — 1h
+Enceramento Premium Moto – Enceramento e proteção completa da pintura e cromados — R$ 100 — 1h15
+
+📂 CATEGORIA: NOTAS GERAIS
+
+Valores “a partir de” indicam variação conforme o tipo e condição do veículo.
+Serviços “sob orçamento” requerem avaliação técnica antes da execução.
+Todos os valores já incluem produtos de alta qualidade e acabamento profissional Garagem 599.
+Pacotes combinados recebem descontos especiais.
+
+Instruções:
+1️⃣ Atualize todos os campos do banco de dados ou do JSON de serviços existentes no app.
+2️⃣ Mantenha as mesmas chaves ou IDs, apenas substitua as descrições, preços e tempos.
+3️⃣ Garanta que os textos fiquem padronizados, sem repetições ou inconsistências.
+4️⃣ Exiba sempre o nome do serviço em destaque, valor em negrito e tempo médio em formato curto (ex: “⏱️ 1h30”).
+5️⃣ Inclua a assinatura visual “Garagem 599” no rodapé da tela de serviços, se houver área de créditos.
+
+Assinatura: GARAGEM 599
