@@ -69,12 +69,43 @@ git push -u origin main
 ```
 dist/public/
 ├── index.html          # Página principal
+├── service-worker.js   # Controle de cache (atualização automática)
+├── version.json        # Arquivo de versão
 ├── assets/            # Todos os recursos otimizados
 │   ├── *.css         # Estilos minificados
 │   ├── *.js          # JavaScript otimizado
 │   ├── *.jpg/png     # Imagens do negócio
 │   └── *.mp4         # Vídeos de fundo
 ```
+
+## 🔄 Sistema de Atualização Automática
+
+O site possui um **sistema inteligente de cache** que:
+
+✅ **Garante que usuários sempre vejam a versão mais atualizada**  
+✅ **Notifica automaticamente quando há atualização**  
+✅ **Força limpeza de cache quando necessário**  
+✅ **Funciona offline como PWA**
+
+### Como Funciona
+
+1. **Service Worker**: Controla o cache com estratégia "Network First"
+2. **Verificação Automática**: Checa nova versão a cada 5 minutos
+3. **Notificação ao Usuário**: Popup quando atualização disponível
+4. **Cache Inteligente**: Assets estáticos são cacheados com hash único
+
+### Atualizando o Site
+
+Sempre que fizer alterações importantes, **atualize a versão** em 4 arquivos:
+
+1. `public/service-worker.js` → `CACHE_VERSION`
+2. `client/src/lib/version-check.ts` → `APP_VERSION`
+3. `public/version.json` → `version`
+4. `client/index.html` → `<meta name="app-version">`
+
+**Exemplo**: Mudar de `1.0.0` para `1.0.1`
+
+📖 **Guia completo**: Veja `UPDATE_GUIDE.md` para instruções detalhadas
 
 ## 🌐 Pós Deploy
 
